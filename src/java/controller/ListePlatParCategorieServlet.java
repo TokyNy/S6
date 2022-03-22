@@ -47,10 +47,11 @@ public class ListePlatParCategorieServlet extends HttpServlet {
                 if(idCategorie!=null && idCategorie.isEmpty()==false){
                     listePlat=Plat.getByIdCategorie(idCategorie, con);
                 }
-                con.close();
+                
                 request.setAttribute("listePlat", listePlat);
                 request.setAttribute("listeCategorie", Categorie.getAll(con));
-                RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponible.jsp");
+                con.close();
+                RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponnible.jsp");
                 dis.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(ListePlatParCategorieServlet.class.getName()).log(Level.SEVERE, null, ex);
