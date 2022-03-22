@@ -18,6 +18,7 @@ public class Plat {
     String id;
     String desc;
     Double prix;
+    String idCategorie;
 
     public String getId() {
         return id;
@@ -43,6 +44,14 @@ public class Plat {
         this.prix = prix;
     }
 
+    public String getIdCategorie() {
+        return idCategorie;
+    }
+
+    public void setIdCategorie(String idCategorie) {
+        this.idCategorie = idCategorie;
+    }
+
     public Plat() {
     }
 
@@ -50,6 +59,13 @@ public class Plat {
         this.id = id;
         this.desc = desc;
         this.prix = prix;
+    }
+
+    public Plat(String id, String desc, Double prix, String idCategorie) {
+        this.id = id;
+        this.desc = desc;
+        this.prix = prix;
+        this.idCategorie = idCategorie;
     }
     
     public Vector<Ingredients> getListeIngredients(Connection con)throws Exception{
@@ -70,6 +86,17 @@ public class Plat {
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
             Plat i=new Plat(res.getString("id"),res.getString("descri"),res.getDouble("prix"));
+            retour.add(i);
+        }
+        return retour;
+    }
+    public static Vector<Plat> getByIdCategorie(String idCategorie,Connection con)throws Exception{
+        Vector<Plat> retour=new Vector();
+        String req="SELECT * FROM Plat WHERE idCategorie='"+idCategorie+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            Plat i=new Plat(res.getString("id"),res.getString("descri"),res.getDouble("prix"),res.getString("idCategorie"));
             retour.add(i);
         }
         return retour;
