@@ -78,7 +78,7 @@ create table Addition(
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
 
-create table AddictionDetails(
+create table AdditionDetails(
     id varchar(10) not null default concat('AddDet',nextval('seqAdditionDetails')),
     idAddition varchar(10) not null,
     idPlat varchar(10) not null,
