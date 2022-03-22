@@ -45,10 +45,10 @@ public class Ingredients {
     public Ingredients() {
     }
 
-    public Ingredients(String id, String desc, Double poids) {
+    
+    public Ingredients(String id, String desc) {
         this.id = id;
         this.desc = desc;
-        this.poids = poids;
     }
 
     public Ingredients(String id, String desc) {
