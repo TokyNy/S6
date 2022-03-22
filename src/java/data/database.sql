@@ -74,7 +74,7 @@ create table Stock (
     id varchar(10) not null default concat('Stock',nextval('seqStock')),
     idIngredient varchar(10) not null,
     poids float not null,
-    Etat int not null, //etat=1 :StockIn, etat=0:stockOut
+    Etat int not null,
     PRIMARY KEY(id),
     FOREIGN KEY(idIngredient) REFERENCES Ingredients(id)
 );
@@ -126,7 +126,13 @@ insert into AdditionDetails values (default,'Add1','Plat8',5000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);
 
 
-create view 
-select pd.idIngredient,sum(pd.poids) from platdetails pd join additionDetails ad on pd.idplat=ad.idPlat group by pd.idIngredient;
-select idIngredient,reste,sum(stock.poids) as totalSortie,sum(stock.poids) as totalEntree
-    from 
+
+-----VIew Stock in et out avec Ingredient
+create view inOut as
+select idIngredient,(case when stock.etat=0 then sum(stock.poids) else 0 end) as totalSortie,
+(case when stock.etat=1 then sum(stock.poids) else 0 end) as totalEntree 
+from stock group by idIngredient,etat;
+
+create view vStockIngredient as
+select idIngredient,sum(totalEntree)-sum(totalSortie) as reste,sum(totalSortie) as totalSortie,sum(totalEntree) as totalEntree
+    from inOut group by idIngredient;
