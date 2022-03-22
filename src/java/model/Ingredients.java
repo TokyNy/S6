@@ -51,9 +51,11 @@ public class Ingredients {
         this.desc = desc;
     }
 
-    public Ingredients(String id, String desc) {
+
+    public Ingredients(String id, String desc, Double poids) {
         this.id = id;
         this.desc = desc;
+        this.poids = poids;
     }
     
     public boolean estDisponible(Connection con)throws Exception{
