@@ -19,12 +19,16 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <h1>liste plats</h1>
-                <table>
-            <tr>
+        <table>
+            <thead class="thead-light">
+                <tr>
                 <th>plat</th>
                 <th>prix</th>
             </tr>
-            <% Vector<Plat> liste=Plat.getAll();
+
+            </thead>
+            <tbody>
+                            <% Vector<Plat> liste=Plat.getAll();
                     for(int i=0;i<liste.size();i++){
                 %>
             <tr>
@@ -33,6 +37,8 @@
                 <td><% out.println(liste.get(i).getPrix()); %></td>
             </tr>
             <% } %>
+            </tbody>
+            
         </table>
             </div>
             <div class="col-md-4"></div>
