@@ -4,9 +4,18 @@
         <servlet-name>ListePlatServlet</servlet-name>
         <servlet-class>controller.ListePlatServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>ListePlatsServlet</servlet-name>
+        <servlet-class>controller.ListePlatsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListePlatServlet</servlet-name>
         <url-pattern>/ListePlat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListePlatServlet</servlet-name>
+        <url-pattern>/ListePlats</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
