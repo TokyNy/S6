@@ -5,6 +5,10 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author ASUS
@@ -41,11 +45,39 @@ public class Ingredients {
     public Ingredients() {
     }
 
+    
+    public Ingredients(String id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
+
+
     public Ingredients(String id, String desc, Double poids) {
         this.id = id;
         this.desc = desc;
         this.poids = poids;
     }
-    
+    public double getReste(Connection con)throws Exception{
+        double reste=0.0;
+        String req="SELECT * FROM vue_stock_ingredients WHERE idIngredient='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            reste=res.getDouble("reste");
+        }
+        res.close();
+        stmt.close();
+        return reste;
+    }
+    public boolean estDisponible(Connection con)throws Exception{
+        double reste=0.0;
+        String req="SELECT * FROM vue_stock_ingredients WHERE idIngredient='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            reste=res.getDouble("reste");
+        }
+        return false;
+    }
     
 }

@@ -17,13 +17,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Categorie;
 import model.Plat;
 
 /**
  *
  * @author ASUS
  */
-public class ListePlatServlet extends HttpServlet {
+public class ListePlatParCategorieServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,15 +39,23 @@ public class ListePlatServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            Connection con;
             try {
-                Connection con=Connexion.getConnection();
-                Vector<Plat> listePlats=Plat.getAll(con);
+                con = Connexion.getConnection();
+                String idCategorie=request.getParameter("idCategorie");
+                Vector<Plat> listePlat=Plat.getAll(con);
+                if(idCategorie!=null && idCategorie.isEmpty()==false){
+                    listePlat=Plat.getByIdCategorie(idCategorie, con);
+                }
                 con.close();
+                request.setAttribute("listePlat", listePlat);
+                request.setAttribute("listeCategorie", Categorie.getAll(con));
                 RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponible.jsp");
                 dis.forward(request, response);
             } catch (Exception ex) {
-                Logger.getLogger(ListePlatServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ListePlatParCategorieServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }
 
