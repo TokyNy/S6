@@ -5,6 +5,10 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author ASUS
@@ -46,6 +50,21 @@ public class Ingredients {
         this.desc = desc;
         this.poids = poids;
     }
+
+    public Ingredients(String id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
     
+    public boolean estDisponible(Connection con)throws Exception{
+        double reste=0.0;
+        String req="SELECT * FROM vue_stock_ingredients WHERE idIngredient='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            
+        }
+        return false;
+    }
     
 }
