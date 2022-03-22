@@ -5,6 +5,11 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
 /**
  *
  * @author ASUS
@@ -46,6 +51,30 @@ public class Plat {
         this.desc = desc;
         this.prix = prix;
     }
+    
+     public Vector<Ingredients> getListeIngredients(Connection con)throws Exception{
+        Vector<Ingredients> retour=new Vector();
+        String req="SELECT i.id,i.descri,pd.poids FROM Ingredients i join PlatDetails pd on i.id=pd.idIngredient WHERE pd.idPlat='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            Ingredients i=new Ingredients(res.getString("id"),res.getString("descri"),res.getDouble("poids"));
+            retour.add(i);
+        }
+        return retour;
+    }
+    public static Vector<Plat> getAll(Connection con)throws Exception{
+        Vector<Plat> retour=new Vector();
+        String req="SELECT * FROM Plat";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            Plat i=new Plat(res.getString("id"),res.getString("descri"),res.getDouble("prix"));
+            retour.add(i);
+        }
+        return retour;
+    }
+
     
     
 }
