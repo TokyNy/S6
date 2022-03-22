@@ -36,6 +36,8 @@ create table Plat(
     prix float not null,
     PRIMARY KEY(id)
 );
+
+insert into
 create table PlatDetails(
     id varchar(10) not null default concat('PlatDet',nextval('seqAddition')),
     idPlat varchar(10) not null,
