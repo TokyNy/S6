@@ -4,10 +4,13 @@
         <servlet-name>ListePlatServlet</servlet-name>
         <servlet-class>controller.ListePlatServlet</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ListePlatsServlet</servlet-name>
         <servlet-class>controller.ListePlatsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListePlatParCategorieServlet</servlet-name>
+        <servlet-class>controller.ListePlatParCategorieServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListePlatServlet</servlet-name>
@@ -16,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ListePlatServlet</servlet-name>
         <url-pattern>/ListePlats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListePlatParCategorieServlet</servlet-name>
+        <url-pattern>/ListePlatParCategorie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
