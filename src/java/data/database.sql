@@ -90,6 +90,8 @@ insert into Stock values (default,'Ing6',1,1,2000);
 insert into Stock values (default,'Ing7',1,1,3000);
 insert into Stock values (default,'Ing8',1,1,9000);
 insert into Stock values (default,'Ing9',1,1,9000);
+insert into Stock values (default,'Ing9',2,1,8000);
+
 
 insert into Stock values (default,'Ing1',0.3,0,0);
 insert into Stock values (default,'Ing3',0.05,0,0);
@@ -141,4 +143,4 @@ select idIngredient,sum(totalEntree)-sum(totalSortie) as reste,sum(totalSortie) 
 
 -----VIew prix moyen par ingredient
 create view vue_prix_moyen as
-select idIngredient,avg(poids*prix) as prix_moyen from stock where etat=1 group by idIngredient;
+select idIngredient,(sum(poids*prix))/sum(poids) as prix_moyen from stock where etat=1 group by idIngredient;
