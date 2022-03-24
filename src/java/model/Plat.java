@@ -79,6 +79,19 @@ public class Plat {
         }
         return retour;
     }
+    
+    public Vector<PlatDetails> getListeDetail(Connection con)throws Exception{
+        Vector<PlatDetails> retour=new Vector();
+        String req="SELECT * FROM PlatDetail WHERE idPlat='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            PlatDetails pd=new PlatDetails(res.getString("id"),res.getString("idPlat"),res.getString("idIngredient"),res.getDouble("poids"));
+            retour.add(pd);
+        }
+        return retour;
+    }
+    
     public static Vector<Plat> getAll(Connection con)throws Exception{
         Vector<Plat> retour=new Vector();
         String req="SELECT * FROM Plat";
@@ -98,6 +111,26 @@ public class Plat {
         while(res.next()){
             Plat i=new Plat(res.getString("id"),res.getString("descri"),res.getDouble("prix"),res.getString("idCategorie"));
             retour.add(i);
+        }
+        return retour;
+    }
+    public Plat getById(String id,Connection con)throws Exception{
+        String req="SELECT * FROM Plat WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Plat retour=null;
+        while(res.next()){
+            retour=new Plat(res.getString("id"),res.getString("descri"),res.getDouble("prix"),res.getString("idCategorie"));
+        }
+        return retour;
+    }
+    public double getPrixDeRevient(Connection con)throws Exception{
+        Vector<PlatDetails> details=getListeDetail(con);
+        double retour=0.0;
+        for(int i=0;i<details.size();i++){
+            PlatDetails pd=(PlatDetails)details.get(i);
+            Ingredients ing=Ingredients.getById(pd.getIdIngredient(),con);
+            retour+=ing.getPrixMoyen(con)*pd.getPoids();
         }
         return retour;
     }
