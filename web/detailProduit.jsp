@@ -65,6 +65,16 @@
           prix de revient : <% out.print(plat.getPrixDeRevient(con)); %> Ar
 
       </p>
+       <p class="text-center">
+           <%
+               Marge m=new Marge();
+               Vector<Marge> ma=m.getListeMarge(con);
+               double prixRevient=plat.getPrixDeRevient(con);
+               double prixVente=Plat.calculPixVente(ma,prixRevient);
+           %>
+         prix de vente : <% out.print(prixVente); %>
+
+      </p>
       <div class="">
           <table class="table">
               <thead>
@@ -85,6 +95,7 @@
                         double prix=ingredients.getPrixMoyen(con);
                         double prixTotal=liste.get(i).getPoids()*prix;
                         double quan=liste.get(i).getPoids();
+                        
                   %>
                   <tr>
                       <td><% out.print(i+1); %></td>

@@ -54,7 +54,7 @@ public class Marge {
     
     public Vector<Marge> getListeMarge(Connection con)throws Exception{
         Vector<Marge> vec=new Vector();
-        String req="SELECT * FORM marge";
+        String req="SELECT * FROM marge";
          Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){

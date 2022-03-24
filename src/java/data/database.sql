@@ -131,14 +131,14 @@ insert into AdditionDetails values (default,'Add1','Plat8',5000);
 create table marge (
     min float,
     max float,
-    pourcentage int not null
+    pourcentage float not null
 );
-insert into marge values (100,500,300);
-insert into marge values (500,1000,250);
-insert into marge values (1000,2000,200);
-insert into marge values (2000,3000,150);
-insert into marge values (3000,5000,100);
-insert into marge values (5000,10000,50);
+insert into marge values (100,500,300.0);
+insert into marge values (500,1000,250.0);
+insert into marge values (1000,2000,200.0);
+insert into marge values (2000,3000,150.0);
+insert into marge values (3000,5000,100.0);
+insert into marge values (5000,10000,50.0);
 
 -----VIew Stock in et out avec Ingredient
 create view inOut as
