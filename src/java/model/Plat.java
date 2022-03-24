@@ -82,7 +82,7 @@ public class Plat {
     
     public Vector<PlatDetails> getListeDetail(Connection con)throws Exception{
         Vector<PlatDetails> retour=new Vector();
-        String req="SELECT * FROM PlatDetail WHERE idPlat='"+this.getId()+"'";
+        String req="SELECT * FROM PlatDetails WHERE idPlat='"+this.getId()+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
@@ -114,7 +114,7 @@ public class Plat {
         }
         return retour;
     }
-    public Plat getById(String id,Connection con)throws Exception{
+    public static Plat getById(String id,Connection con)throws Exception{
         String req="SELECT * FROM Plat WHERE id='"+id+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
@@ -132,6 +132,6 @@ public class Plat {
             Ingredients ing=Ingredients.getById(pd.getIdIngredient(),con);
             retour+=ing.getPrixMoyen(con)*pd.getPoids();
         }
-        return retour;
+        return Math.round(retour);
     }
 }

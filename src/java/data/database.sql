@@ -61,14 +61,14 @@ create table PlatDetails(
     FOREIGN KEY(idIngredient) REFERENCES Ingredients(id)
 );
 
-insert into PlatDetails values (default,'Plat7','Ing1',0.30);
-insert into PlatDetails values (default,'Plat7','Ing3',0.05);
-insert into PlatDetails values (default,'Plat8','Ing4',0.15);
-insert into PlatDetails values (default,'Plat8','Ing5',0.05);
-insert into PlatDetails values (default,'Plat8','Ing6',0.05);
-insert into PlatDetails values (default,'Plat8','Ing7',0.10);
-insert into PlatDetails values (default,'Plat8','Ing8',0.01);
-insert into PlatDetails values (default,'Plat9','Ing9',0.20);
+insert into PlatDetails values (default,'Plat4','Ing1',0.30);
+insert into PlatDetails values (default,'Plat5','Ing3',0.05);
+insert into PlatDetails values (default,'Plat5','Ing4',0.15);
+insert into PlatDetails values (default,'Plat6','Ing5',0.05);
+insert into PlatDetails values (default,'Plat6','Ing6',0.05);
+insert into PlatDetails values (default,'Plat6','Ing7',0.10);
+insert into PlatDetails values (default,'Plat5','Ing8',0.01);
+insert into PlatDetails values (default,'Plat4','Ing9',0.20);
 
 create table Stock (
     id varchar(10) not null default concat('Stock',nextval('seqStock')),
