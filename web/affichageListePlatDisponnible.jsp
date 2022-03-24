@@ -108,7 +108,7 @@
                 
                 <td><% out.println(liste.get(j).getDesc()); %> </td>
                 <td><% out.println(liste.get(j).getPrix()); %></td>
-                <td><a href="detailProduit.jsp?id=<%out.print(liste.get(j).getId()); %>"</td>
+                <td><a href="detailProduit.jsp?id=<%out.print(liste.get(j).getId()); %>">voir detail</a></td>
             </tr>
             <% } %>
             </tbody>

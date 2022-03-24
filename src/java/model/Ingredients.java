@@ -90,12 +90,12 @@ public class Ingredients {
         return retour;
     }
     public double getPrixMoyen(Connection con)throws Exception{
-        String req="SELECT * FROM vue_prix_moyen_ingredient WHERE idIngredient='"+this.getId()+"'";
+        String req="SELECT * FROM vue_prix_moyen WHERE idIngredient='"+this.getId()+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         double retour=0.0;
         while(res.next()){
-            retour=res.getDouble("prix");
+            retour=res.getDouble("prix_moyen");
         }
         return retour;
     }

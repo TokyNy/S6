@@ -82,7 +82,7 @@ public class Plat {
     
     public Vector<PlatDetails> getListeDetail(Connection con)throws Exception{
         Vector<PlatDetails> retour=new Vector();
-        String req="SELECT * FROM PlatDetail WHERE idPlat='"+this.getId()+"'";
+        String req="SELECT * FROM PlatDetails WHERE idPlat='"+this.getId()+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){

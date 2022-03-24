@@ -62,16 +62,18 @@
 
       </h2>
       <p class="text-center">
-        
+          prix de revient : <% out.print(plat.getPrixDeRevient(con)); %>
 
       </p>
       <div class="">
-          <table>
+          <table class="table">
               <thead>
                   <tr>
                       <th>ingredients</th>
                       <th>prix</th>
                        <th>prix total</th>
+                       <th>quantite</th>
+                       
                   </tr>
               </thead>
               <tbody>
@@ -80,11 +82,13 @@
                         String nom=ingredients.getDesc();
                         double prix=ingredients.getPrixMoyen(con);
                         double prixTotal=liste.get(i).getPoids()*prix;
+                        double quan=liste.get(i).getPoids();
                   %>
                   <tr>
                       <td><%out.print(nom); %></td>
-                      <td><% out.print(prix); %></td>
+                      <td><% out.print(Math.round(prix)); %></td>
                       <td><% out.print(prixTotal); %></td>
+                      <td><% out.print(quan); %></td>
                   </tr>
                   <% } %>
               </tbody>
