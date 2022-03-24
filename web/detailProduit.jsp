@@ -29,7 +29,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Adward</title>
+  
 
 
 
@@ -62,17 +62,19 @@
 
       </h2>
       <p class="text-center">
-          prix de revient : <% out.print(plat.getPrixDeRevient(con)); %>
+          prix de revient : <% out.print(plat.getPrixDeRevient(con)); %> Ar
 
       </p>
       <div class="">
           <table class="table">
               <thead>
                   <tr>
+                      <th>N°</th>
                       <th>ingredients</th>
-                      <th>prix</th>
-                       <th>prix total</th>
+                      <th>prix moyen/kg</th>
                        <th>quantite</th>
+                       <th>prix</th>
+                      
                        
                   </tr>
               </thead>
@@ -85,10 +87,12 @@
                         double quan=liste.get(i).getPoids();
                   %>
                   <tr>
+                      <td><% out.print(i+1); %></td>
                       <td><%out.print(nom); %></td>
-                      <td><% out.print(Math.round(prix)); %></td>
-                      <td><% out.print(prixTotal); %></td>
+                      <td><% out.print(prix); %></td>
                       <td><% out.print(quan); %></td>
+                      <td><% out.print(prixTotal); %></td>
+                      
                   </tr>
                   <% } %>
               </tbody>
