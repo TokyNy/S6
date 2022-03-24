@@ -78,24 +78,26 @@ create table Stock (
     PRIMARY KEY(id),
     FOREIGN KEY(idIngredient) REFERENCES Ingredients(id)
 );
-insert into Stock values (default,'Ing1',1,1);
-insert into Stock values (default,'Ing2',1,1);
-insert into Stock values (default,'Ing3',1,1);
-insert into Stock values (default,'Ing4',1,1);
-insert into Stock values (default,'Ing5',1,1);
-insert into Stock values (default,'Ing6',1,1);
-insert into Stock values (default,'Ing7',1,1);
-insert into Stock values (default,'Ing8',1,1);
-insert into Stock values (default,'Ing9',1,1);
+Alter table Stock add prix float not null;
 
-insert into Stock values (default,'Ing1',0.3,0);
-insert into Stock values (default,'Ing3',0.05,0);
-insert into Stock values (default,'Ing4',0.3,0);
-insert into Stock values (default,'Ing5',0.1,0);
-insert into Stock values (default,'Ing6',0.1,0);
-insert into Stock values (default,'Ing7',0.2,0);
-insert into Stock values (default,'Ing8',0.02,0);
+insert into Stock values (default,'Ing1',1,1,5000);
+insert into Stock values (default,'Ing2',1,1,3000);
+insert into Stock values (default,'Ing2',1,1,4000);
+insert into Stock values (default,'Ing3',1,1,6000);
+insert into Stock values (default,'Ing4',1,1,1000);
+insert into Stock values (default,'Ing5',1,1,6000);
+insert into Stock values (default,'Ing6',1,1,2000);
+insert into Stock values (default,'Ing7',1,1,3000);
+insert into Stock values (default,'Ing8',1,1,9000);
+insert into Stock values (default,'Ing9',1,1,9000);
 
+insert into Stock values (default,'Ing1',0.3,0,0);
+insert into Stock values (default,'Ing3',0.05,0,0);
+insert into Stock values (default,'Ing4',0.3,0,0);
+insert into Stock values (default,'Ing5',0.1,0,0);
+insert into Stock values (default,'Ing6',0.1,0,0);
+insert into Stock values (default,'Ing7',0.2,0,0);
+insert into Stock values (default,'Ing8',0.02,0,0);
 
 create table TTable(
     id varchar(10) not null default concat('Table',nextval('seqTable')),
@@ -136,3 +138,7 @@ from stock group by idIngredient,etat;
 create view vStockIngredient as
 select idIngredient,sum(totalEntree)-sum(totalSortie) as reste,sum(totalSortie) as totalSortie,sum(totalEntree) as totalEntree
     from inOut group by idIngredient;
+
+-----VIew prix moyen par ingredient
+create view vue_prix_moyen as
+select idIngredient,avg(poids*prix) as prix_moyen from stock where etat=1 group by idIngredient;
