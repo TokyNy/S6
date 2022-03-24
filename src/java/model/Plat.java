@@ -91,7 +91,17 @@ public class Plat {
         }
         return retour;
     }
-    
+    public Vector<DetailPrix> getDetailPrix(Connection con)throws Exception{
+        Vector<DetailPrix> retour=new Vector();
+        String req="SELECT * FROM PlatDetails WHERE idPlat='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            DetailPrix pd=new DetailPrix(res.getDouble("prix_moyen"),res.getDouble("prix"),res.getString("id"),res.getString("idPlat"),res.getString("idIngredient"),res.getDouble("poids"));
+            retour.add(pd);
+        }
+        return retour;
+    }
     public static Vector<Plat> getAll(Connection con)throws Exception{
         Vector<Plat> retour=new Vector();
         String req="SELECT * FROM Plat";

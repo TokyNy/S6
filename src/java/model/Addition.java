@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 
 /**
@@ -59,5 +62,9 @@ public class Addition {
         this.prixTotal = prixTotal;
     }
     
-    
+    public static void ajouterCommande(String idTable,String date,Connection con)throws Exception{
+        String req="INSERT INTO Addition VALUES()";
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+    }
 }
