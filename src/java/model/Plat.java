@@ -132,6 +132,6 @@ public class Plat {
             Ingredients ing=Ingredients.getById(pd.getIdIngredient(),con);
             retour+=ing.getPrixMoyen(con)*pd.getPoids();
         }
-        return retour;
+        return Math.round(retour);
     }
 }
