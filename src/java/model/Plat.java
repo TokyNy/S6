@@ -144,4 +144,21 @@ public class Plat {
         }
         return Math.round(retour);
     }
+    public static double calculPixVente(Vector<Marge> listeMarge,double prixRevient){
+        double retour=prixRevient;
+        for(int i=0;i<listeMarge.size();i++){
+            Marge m=(Marge)listeMarge.get(i);
+            if(m.getMin()<=prixRevient && m.getMax()>=prixRevient){
+                retour=(prixRevient*m.getPrix())/100;
+                break;
+            }else if(m.getMin()<=prixRevient && m.getMax()==null){
+                retour=(prixRevient*m.getPrix())/100;
+                break;
+            }else if(m.getMax()>=prixRevient && m.getMin()==null){
+                retour=(prixRevient*m.getPrix())/100;
+                break;
+            }
+        }
+        return retour;
+    }
 }
