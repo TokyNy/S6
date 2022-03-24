@@ -114,7 +114,7 @@ public class Plat {
         }
         return retour;
     }
-    public Plat getById(String id,Connection con)throws Exception{
+    public static Plat getById(String id,Connection con)throws Exception{
         String req="SELECT * FROM Plat WHERE id='"+id+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
