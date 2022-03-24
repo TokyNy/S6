@@ -111,11 +111,10 @@ create table Addition(
     id varchar(10) not null default concat('Add',nextval('seqAddition')),
     idTable varchar(10) not null,
     date timestamp not null,
-    prixTotal float not null,
     PRIMARY KEY(id),
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
-insert into Addition values (default,'Table1',now(),13000);
+insert into Addition values (default,'Table1',now());
 create table AdditionDetails(
     id varchar(10) not null default concat('AddDet',nextval('seqAdditionDetails')),
     idAddition varchar(10) not null,
