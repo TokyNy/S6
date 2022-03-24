@@ -79,5 +79,24 @@ public class Ingredients {
         }
         return false;
     }
-    
+    public static Ingredients getById(String id,Connection con)throws Exception{
+        String req="SELECT * FROM Ingredients WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Ingredients retour=null;
+        while(res.next()){
+            retour=new Ingredients(res.getString("id"),res.getString("descri"));
+        }
+        return retour;
+    }
+    public double getPrixMoyen(Connection con)throws Exception{
+        String req="SELECT * FROM vue_prix_moyen_ingredient WHERE idIngredient='"+this.getId()+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        double retour=0.0;
+        while(res.next()){
+            retour=res.getDouble("prix");
+        }
+        return retour;
+    }
 }
