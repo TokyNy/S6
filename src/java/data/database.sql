@@ -149,3 +149,6 @@ select platdetails.*,vue_prix_moyen.prix_moyen from platdetails join vue_prix_mo
 -----VIew prix ingredient par par plat
 create view vue_prix_ingredient_par_plat as
 select *,poids*prix_moyen as prix_ingredient from vue_prix_ingredient_plat;
+-----VIew prix plat de revient plat
+create view vue_plat_prixDeRevient as
+select idplat,sum(prix_ingredient) as prix_de_revient from vue_prix_ingredient_par_plat group by idplat
