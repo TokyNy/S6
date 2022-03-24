@@ -5,9 +5,14 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
 /**
  *
- * @author ASUS
+ * @author ACER
  */
 public class Marge {
     Double min;
@@ -43,6 +48,23 @@ public class Marge {
         this.max = max;
         this.prix = prix;
     }
+
+    public Marge() {
+    }
     
+    public Vector<Marge> getListeMarge(Connection con)throws Exception{
+        Vector<Marge> vec=new Vector();
+        String req="SELECT * FORM marge";
+         Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            Marge m=new Marge();
+            m.setMin(res.getDouble("min"));
+            m.setMax(res.getDouble("max"));
+            m.setPrix(res.getDouble("pourcentage"));
+            vec.addElement(m);
+        }
+        return vec;
+    }
     
 }

@@ -111,11 +111,10 @@ create table Addition(
     id varchar(10) not null default concat('Add',nextval('seqAddition')),
     idTable varchar(10) not null,
     date timestamp not null,
-    prixTotal float not null,
     PRIMARY KEY(id),
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
-insert into Addition values (default,'Table1',now(),13000);
+insert into Addition values (default,'Table1',now());
 create table AdditionDetails(
     id varchar(10) not null default concat('AddDet',nextval('seqAdditionDetails')),
     idAddition varchar(10) not null,
@@ -144,3 +143,12 @@ select idIngredient,sum(totalEntree)-sum(totalSortie) as reste,sum(totalSortie) 
 -----VIew prix moyen par ingredient
 create view vue_prix_moyen as
 select idIngredient,(sum(poids*prix))/sum(poids) as prix_moyen from stock where etat=1 group by idIngredient;
+-----VIew prix moyen par ingredient
+create view vue_prix_ingredient_plat as
+select platdetails.*,vue_prix_moyen.prix_moyen from platdetails join vue_prix_moyen on platdetails.idIngredient=vue_prix_moyen.idingredient;
+-----VIew prix ingredient par par plat
+create view vue_prix_ingredient_par_plat as
+select *,poids*prix_moyen as prix_ingredient from vue_prix_ingredient_plat;
+-----VIew prix plat de revient plat
+create view vue_plat_prixDeRevient as
+select idplat,sum(prix_ingredient) as prix_de_revient from vue_prix_ingredient_par_plat group by idplat
