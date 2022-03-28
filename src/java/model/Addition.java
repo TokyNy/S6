@@ -68,7 +68,7 @@ public class Addition {
         return true;
     }
     public static void ajouterAddition(String idTable,String idServeur,Connection con)throws Exception{
-        String req="INSERT INTO Addition VALUES(default,'"+idTable+"',now(),'"+idServeur+"')";
+        String req="INSERT INTO Addition VALUES(default,'"+idTable+"',now())";
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
     }
