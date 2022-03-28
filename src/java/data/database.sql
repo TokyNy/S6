@@ -6,6 +6,8 @@ create sequence seqPlat start with 1 increment by 1;
 create sequence seqPlatDetails start with 1 increment by 1;
 create sequence seqStock start with 1 increment by 1;
 create sequence seqCategorie start with 1 increment by 1;
+create sequence seqServeur start with 1 increment by 1;
+
 
 
 
@@ -114,7 +116,12 @@ create table Addition(
     PRIMARY KEY(id),
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
-insert into Addition values (default,'Table1',now());
+Alter table Addition add idServeur varchar(10);
+update addition set idServeur='Serv1';
+insert into Addition values (default,'Table1',now(),'Serv1');
+insert into Addition values (default,'Table1',now(),'Serv2');
+
+
 create table AdditionDetails(
     id varchar(10) not null default concat('AddDet',nextval('seqAdditionDetails')),
     idAddition varchar(10) not null,
@@ -128,6 +135,15 @@ insert into AdditionDetails values (default,'Add1','Plat7',8000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);
 
+
+insert into AdditionDetails values (default,'Add4','Plat9',6000);
+insert into AdditionDetails values (default,'Add4','Plat8',5000);
+insert into AdditionDetails values (default,'Add4','Plat10',3000);
+insert into AdditionDetails values (default,'Add5','Plat7',6000);
+insert into AdditionDetails values (default,'Add5','Plat8',5000);
+insert into AdditionDetails values (default,'Add5','Plat8',8000);
+insert into AdditionDetails values (default,'Add5','Plat10',3000);
+
 create table marge (
     min float,
     max float,
@@ -139,6 +155,15 @@ insert into marge values (1000,2000,200.0);
 insert into marge values (2000,3000,150.0);
 insert into marge values (3000,5000,100.0);
 insert into marge values (5000,10000,50.0);
+
+
+create table serveur(
+    id varchar(10) not null default concat('Serv',nextval('seqServeur')),
+    nom varchar(20) not null,
+);
+
+insert into serveur values(default,'Rakoto');
+insert into serveur values(default,'Rabe');
 
 -----VIew Stock in et out avec Ingredient
 create view inOut as
@@ -162,3 +187,6 @@ select *,poids*prix_moyen as prix_ingredient from vue_prix_ingredient_plat;
 -----VIew prix plat de revient plat
 create view vue_plat_prixDeRevient as
 select idplat,sum(prix_ingredient) as prix_de_revient from vue_prix_ingredient_par_plat group by idplat
+
+-----VIew prix total par commande
+create view vue_total_par_commande as select a.id,a.date,a.idServeur,sum(ad.prix) as prix from Addition as a join AdditionDetails  as ad on a.id=ad.idAddition group by a.id;
