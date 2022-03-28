@@ -5,6 +5,7 @@
  */
 package model;
 
+import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -43,7 +44,8 @@ public class Serveur {
     }
     
     
-    public static Serveur getById(String id,Connection con)throws Exception{
+    public static Serveur getById(String id)throws Exception{
+        Connection con=Connexion.getConnection();
         String req="SELECT * FROM Serveur WHERE id='"+id+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
@@ -51,9 +53,11 @@ public class Serveur {
         while(res.next()){
             retour=new Serveur(res.getString("id"),res.getString("nom"));
         }
+        con.close();
         return retour;
     }
-    public double getSommePourBoire(String date1,String date2,double pourc,Connection con)throws Exception{
+    public double getSommePourBoire(String date1,String date2,double pourc)throws Exception{
+        Connection con=Connexion.getConnection();
         String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
         double retour=0.0;
         Statement stmt=con.createStatement();
@@ -61,10 +65,12 @@ public class Serveur {
         while(res.next()){
             retour=(res.getDouble("prix")*pourc)/100;
         }
+        con.close();
         return retour;
     }
     
-    public static Vector<Serveur> getAll(Connection con)throws Exception{
+    public static Vector<Serveur> getAll()throws Exception{
+        Connection con=Connexion.getConnection();
         String req="SELECT * FROM Serveur";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
@@ -72,6 +78,7 @@ public class Serveur {
         while(res.next()){
             retour.add(new Serveur(res.getString("id"),res.getString("nom")));
         }
+        con.close();
         return retour;
     }
 }
