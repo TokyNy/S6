@@ -3,15 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Informatique/S6/src/java/controller/ListePlatServlet.java</file>
-            <file>file:/F:/Informatique/S6/src/java/controller/ListePlatsServlet.java</file>
-            <file>file:/F:/Informatique/S6/src/java/model/Ingredients.java</file>
-            <file>file:/F:/Informatique/S6/src/java/data/database.sql</file>
-            <file>file:/F:/Informatique/S6/nbproject/build-impl.xml</file>
-            <file>file:/F:/Informatique/S6/src/java/model/Plat.java</file>
-            <file>file:/F:/Informatique/S6/src/java/model/Categorie.java</file>
-            <file>file:/F:/Informatique/S6/src/java/controller/ListePlatParCategorieServlet.java</file>
-            <file>file:/F:/Informatique/S6/web/affichageListePlatDisponnible.jsp</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/web/detailProduit.jsp</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/Ingredients.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/Plat.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/AdditionDetails.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/web/affichageListePlatDisponnible.jsp</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/connexion/Connexion.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/Categorie.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/web/index.html</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/data/database.sql</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/controller/ListePlatServlet.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/controller/ListePlatParCategorieServlet.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/Addition.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/Marge.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/S6/src/java/model/PlatDetails.java</file>
         </group>
     </open-files>
 </project-private>
