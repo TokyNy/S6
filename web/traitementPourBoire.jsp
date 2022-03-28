@@ -11,7 +11,7 @@
 <%
     String date1=request.getParameter("date1");
     String date2=request.getParameter("date2");
-    double pourcentage=Double.valueOf(request.getParameter("pourcentage"));
+    //double pourcentage=Double.valueOf(request.getParameter("pourcentage"));
     Connection con=Connexion.getConnection();
    Vector<Serveur> listeServeur=Serveur.getAll(con);
     %>
@@ -73,7 +73,11 @@
             <div class="col-md-6 mx-auto">
                 <div class="contact-form">
                    
-                    
+                    <table>
+                        <tr>
+                            
+                        </tr>
+                    </table>
                     
                     
                 </div>

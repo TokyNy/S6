@@ -1,14 +1,12 @@
 <%-- 
-    Document   : pourBoire
-    Created on : 28 mars 2022, 14:12:45
+    Document   : choix
+    Created on : 28 mars 2022, 15:20:34
     Author     : ACER
 --%>
 
 <%@page import="java.util.Vector"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.*"%>
-<%@page import="connexion.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,11 +47,10 @@
 
     </head>
     <body>
-        <section class="contact_section layout_padding">
-    <div class="container">
+       <div class="container">
 
       <h2 class="main-heading">
-        PourBoire
+        Liste de nos plats
 
       </h2>
       <p class="text-center">
@@ -65,37 +62,30 @@
           <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="contact-form">
-                    <form action="pourBoire.jsp" method="get">
-                        <input type="dateTime-local" class="form-control" id="exampleFormControlInput1" name="date1">
-                        <input type="dateTime-local" class="form-control" id="exampleFormControlInput1" name="date2">
-                        <input type="submit" value="ok" class="btn btn-primary mb-2">
+                    <form action="traitement-commande.jsp" method="get">
+                        <% Vector<Serveur> li=Serveur.getAll();
+                                    
+                                    
+                                    %>
+                                    <select name="idServeur">
+                                        <% for(int g=0;g<li.size();g++){
+                                         %>
+                                         <option value="<% out.print(li.get(g).getId()); %>"><% out.print(li.get(g).getNom()); %></option>
+                                         <% } %>
+                                    </select>
+                                    <select name="idTable">
+                                        <% Vector<Table> listeTable=Table.getAll();
+                                        for(int k=0;k<listeTable.size();k++){
+                                        %>
+                                        <option value="<% out.print(listeTable.get(k).getId()); %>"><% out.print(listeTable.get(k).getDesc()); %></option>
+                                        <% } %>
+                                    </select>
+                                    <input type="submit" value="ok">
+                                
                     </form>
+                                    <section class="contact_section layout_padding">
+    
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th>nom</th>
-                        <th>pourboire</th>
-                        <th>prix total</th>
-                    </tr>
-                    </thead>
-                    
-                    <% 
-                        Vector<Serveur> liste=Serveur.getAll();
-                        for(int i=0;i<liste.size();i++){
-                        %>
-                        <tbody>
-                            <tr>
-                            <td><%out.print(liste.get(i).getNom()); %></td>
-                            <% double[] somme=liste.get(i).getSommePourBoire(request.getParameter("date1"),request.getParameter("date2"),2);
-                                %>
-                            <td><% out.print(somme[1]); %></td>
-                            <td><% out.print(somme[0]); %></td>
-                        </tr>
-                        <% } %>
-                        </tbody>
-                        
-                </table>
                     
                       
               </div>
@@ -107,5 +97,6 @@
     </div>
   </section>
 
+    
     </body>
 </html>

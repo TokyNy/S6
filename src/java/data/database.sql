@@ -113,10 +113,13 @@ create table Addition(
     id varchar(10) not null default concat('Add',nextval('seqAddition')),
     idTable varchar(10) not null,
     date timestamp not null,
+    idServeur varchar(10),
     PRIMARY KEY(id),
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
-Alter table Addition add idServeur varchar(10);
+drop view vue_total_par_commande;
+Alter table Addition drop idServeur;
+
 update addition set idServeur='Serv1';
 insert into Addition values (default,'Table1',now(),'Serv1');
 insert into Addition values (default,'Table1',now(),'Serv2');
@@ -131,14 +134,18 @@ create table AdditionDetails(
     FOREIGN KEY(idAddition) REFERENCES Addition(id),
     FOREIGN KEY(idPlat) REFERENCES Plat(id)
 );
+Alter table additionDetails add idServeur varchar(10);
+
+update additionDetails set idServeur=4 where id='AddDet16';
+
 insert into AdditionDetails values (default,'Add1','Plat7',8000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);
 
 
-insert into AdditionDetails values (default,'Add4','Plat9',6000);
-insert into AdditionDetails values (default,'Add4','Plat8',5000);
-insert into AdditionDetails values (default,'Add4','Plat10',3000);
+insert into AdditionDetails values (default,'Add4','Plat4',6000);
+insert into AdditionDetails values (default,'Add4','Plat4',5000);
+insert into AdditionDetails values (default,'Add4','Plat5',3000);
 insert into AdditionDetails values (default,'Add5','Plat7',6000);
 insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);
@@ -159,7 +166,7 @@ insert into marge values (5000,10000,50.0);
 
 create table serveur(
     id varchar(10) not null default concat('Serv',nextval('seqServeur')),
-    nom varchar(20) not null,
+    nom varchar(20) not null
 );
 
 insert into serveur values(default,'Rakoto');
@@ -189,7 +196,7 @@ create view vue_plat_prixDeRevient as
 select idplat,sum(prix_ingredient) as prix_de_revient from vue_prix_ingredient_par_plat group by idplat
 
 -----VIew prix total par commande
-create view vue_total_par_commande as select a.id,a.date,a.idServeur,sum(ad.prix) as prix from Addition as a join AdditionDetails  as ad on a.id=ad.idAddition group by a.id;
+create view vue_total_par_commande as select a.id,a.date,ad.idServeur,sum(ad.prix) as prix from Addition as a join AdditionDetails  as ad on a.id=ad.idAddition group by a.id,ad.idServeur;
 
 -----VIew plat additionDetails
 create view  plat_AdditionDetails as select ad.*,plat.descri as nom from additionDetails as ad join plat on ad.idPlat=plat.id;
