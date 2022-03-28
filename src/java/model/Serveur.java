@@ -56,17 +56,20 @@ public class Serveur {
         con.close();
         return retour;
     }
-    public double getSommePourBoire(String date1,String date2,double pourc)throws Exception{
+    public double[] getSommePourBoire(String date1,String date2,double pourc)throws Exception{
         Connection con=Connexion.getConnection();
+        double[] retour=new double[2];
+        retour[0]=0.0;
+        retour[1]=0.0;
         if(date1==null || date1.isEmpty()==true || date2==null || date2.isEmpty()==true){
-            return 0.0;
+            return retour;
         }
         String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
-        double retour=0.0;
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
-            retour=(res.getDouble("prix")*pourc)/100;
+            retour[0]=res.getDouble("prix");
+            retour[1]=(res.getDouble("prix")*pourc)/100;
         }
         con.close();
         return retour;
