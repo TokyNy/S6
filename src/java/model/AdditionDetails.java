@@ -5,6 +5,7 @@
  */
 package model;
 
+import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.Statement;
 
@@ -66,10 +67,22 @@ public class AdditionDetails {
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
     }
-    public static void ajouter(String idAddition,String idPlat,String qte,String idServeur,Connection con)throws Exception{
+    public static void ajouter(String idAddition,String idPlat,String qte,String idServeur)throws Exception{
+        Connection con=Connexion.getConnection();
+        con.setAutoCommit(false);
         int quantite=Integer.valueOf(qte);
         for(int i=0;i<quantite;i++){
-            ajoutDetail(idAddition,idPlat,idServeur,con);
+            try{
+                ajoutDetail(idAddition,idPlat,idServeur,con);
+                con.commit();
+            }catch(Exception e){
+                con.rollback();
+                e.printStackTrace();
+                throw new Exception(e.getMessage());
+            }finally{
+                con.close();
+            }
+            
         }
     }
 }
