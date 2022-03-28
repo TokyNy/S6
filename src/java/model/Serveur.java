@@ -58,6 +58,9 @@ public class Serveur {
     }
     public double getSommePourBoire(String date1,String date2,double pourc)throws Exception{
         Connection con=Connexion.getConnection();
+        if(date1==null || date1.isEmpty()==true || date2==null || date2.isEmpty()==true){
+            return 0.0;
+        }
         String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
         double retour=0.0;
         Statement stmt=con.createStatement();
