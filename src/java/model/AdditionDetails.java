@@ -60,16 +60,16 @@ public class AdditionDetails {
         this.prix = prix;
     }
     
-    public static void ajoutDetail(String idAddition,String idPlat,Connection con)throws Exception{
+    public static void ajoutDetail(String idAddition,String idPlat,String idServeur,Connection con)throws Exception{
         Plat p=Plat.getById(idPlat, con);
-        String req="INSERT INTO AdditionDetails VALUES(default,'"+idAddition+"','"+idPlat+"',"+p.getPrix()+")";
+        String req="INSERT INTO AdditionDetails VALUES(default,'"+idAddition+"','"+idPlat+"',"+p.getPrix()+",'"+idServeur+"')";
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
     }
-    public static void ajouter(String idAddition,String idPlat,String qte,Connection con)throws Exception{
+    public static void ajouter(String idAddition,String idPlat,String qte,String idServeur,Connection con)throws Exception{
         int quantite=Integer.valueOf(qte);
         for(int i=0;i<quantite;i++){
-            ajoutDetail(idAddition,idPlat,con);
+            ajoutDetail(idAddition,idPlat,idServeur,con);
         }
     }
 }
