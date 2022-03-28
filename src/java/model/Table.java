@@ -5,6 +5,12 @@
  */
 package model;
 
+import connexion.Connexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
 /**
  *
  * @author ASUS
@@ -37,5 +43,17 @@ public class Table {
         this.desc = desc;
     }
     
+    public static Vector<Table> getAll()throws Exception{
+        Connection con=Connexion.getConnection();
+        String req="SELECT * FROM TTable";
+        Vector<Table> retour=new Vector();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.add(new Table(res.getString("id"),res.getString("descri")));
+        }
+        con.close();
+        return retour;
+    }
     
 }
