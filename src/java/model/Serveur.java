@@ -8,6 +8,7 @@ package model;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Vector;
 
 /**
  *
@@ -32,7 +33,26 @@ public class Serveur {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public Serveur(String id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    public Serveur() {
+    }
     
+    
+    public static Serveur getById(String id,Connection con)throws Exception{
+        String req="SELECT * FROM Serveur WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Serveur retour=null;
+        while(res.next()){
+            retour=new Serveur(res.getString("id"),res.getString("nom"));
+        }
+        return retour;
+    }
     public double getSommePourBoire(String date1,String date2,double pourc,Connection con)throws Exception{
         String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
         double retour=0.0;
@@ -40,6 +60,17 @@ public class Serveur {
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
             retour=(res.getDouble("prix")*pourc)/100;
+        }
+        return retour;
+    }
+    
+    public static Vector<Serveur> getAll(Connection con)throws Exception{
+        String req="SELECT * FROM Serveur";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Vector<Serveur> retour=new Vector();
+        while(res.next()){
+            retour.add(new Serveur(res.getString("id"),res.getString("nom")));
         }
         return retour;
     }
