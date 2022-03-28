@@ -86,4 +86,18 @@ public class Addition {
         con.close();
         return retour;
     }
+    public static String getLast(String idTable)throws Exception{
+        String req="select id from Addition where date=(SELECT MAX(date) FROM Addition) and idTable='"+idTable+"'";
+        String retour="";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour=res.getString("id");
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
 }
