@@ -113,10 +113,11 @@ create table Addition(
     id varchar(10) not null default concat('Add',nextval('seqAddition')),
     idTable varchar(10) not null,
     date timestamp not null,
+    idServeur varchar(10),
     PRIMARY KEY(id),
     FOREIGN KEY(idTable) REFERENCES TTable(id)
 );
-Alter table Addition add idServeur varchar(10);
+
 update addition set idServeur='Serv1';
 insert into Addition values (default,'Table1',now(),'Serv1');
 insert into Addition values (default,'Table1',now(),'Serv2');
@@ -131,14 +132,14 @@ create table AdditionDetails(
     FOREIGN KEY(idAddition) REFERENCES Addition(id),
     FOREIGN KEY(idPlat) REFERENCES Plat(id)
 );
-insert into AdditionDetails values (default,'Add1','Plat7',8000);
-insert into AdditionDetails values (default,'Add1','Plat8',5000);
-insert into AdditionDetails values (default,'Add1','Plat8',5000);
+insert into AdditionDetails values (default,'Add3','Plat4',8000);
+insert into AdditionDetails values (default,'Add3','Plat5',5000);
+insert into AdditionDetails values (default,'Add3','Plat6',5000);
 
 
-insert into AdditionDetails values (default,'Add4','Plat9',6000);
-insert into AdditionDetails values (default,'Add4','Plat8',5000);
-insert into AdditionDetails values (default,'Add4','Plat10',3000);
+insert into AdditionDetails values (default,'Add4','Plat4',6000);
+insert into AdditionDetails values (default,'Add4','Plat4',5000);
+insert into AdditionDetails values (default,'Add4','Plat5',3000);
 insert into AdditionDetails values (default,'Add5','Plat7',6000);
 insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);
@@ -159,7 +160,7 @@ insert into marge values (5000,10000,50.0);
 
 create table serveur(
     id varchar(10) not null default concat('Serv',nextval('seqServeur')),
-    nom varchar(20) not null,
+    nom varchar(20) not null
 );
 
 insert into serveur values(default,'Rakoto');

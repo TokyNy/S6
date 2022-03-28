@@ -85,18 +85,26 @@
                                 <input type="submit" value="ok" class="btn btn-primary mb-2">
 
                           </form>
-                          
-                      
-                 
-                      
-                
-                
-                      
-                                <table class="table">
+                                <% Vector<Serveur> li=Serveur.getAll();
+                                    
+                                    
+                                    %>
+                                    <select name="idSer">
+                                        <% Serveur serveur=Serveur.getById(request.getParameter("idServeur")); %>
+                                        <option value="<% out.print(request.getParameter("idServeur")); %>"><% out.print(serveur.getNom());%></option>
+                                        <% for(int g=0;g<li.size();g++){
+                                         %>
+                                         
+                                         <option value="<% out.print(li.get(g).getId()); %>"><% out.print(li.get(g).getNom()); %></option>
+                                         <% } %>
+                                    </select>
+                        
+                               <table class="table">
             <thead class="thead-light">
                 <tr>
                 <th>plat</th>
                 <th>prix</th>
+                <th>quantite</th>
             </tr>
 
             </thead>
@@ -108,12 +116,19 @@
                 
                 <td><% out.println(liste.get(j).getDesc()); %> </td>
                 <td><% out.println(liste.get(j).getPrix()); %></td>
+                
+                <td><input type="number" name="quantite"></td>
                 <td><a href="detailProduit.jsp?id=<%out.print(liste.get(j).getId()); %>">voir detail</a></td>
+                
+                <td><a href="insertionCommande.jsp?idProduit=<%out.print(liste.get(j).getId()); %>&quantite=<%out.print(request.getParameter("quantite")) ;%>&idAddition=<%out.print(request.getParameter("idAddition")); %>&idServe=<%out.print(request.getParameter("idSer")); %>">commander</a></td>
             </tr>
             <% } %>
             </tbody>
             
         </table>
+                                
+                                
+                                    
                 </div>
                     
                       
