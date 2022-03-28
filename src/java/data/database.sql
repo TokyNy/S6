@@ -190,3 +190,6 @@ select idplat,sum(prix_ingredient) as prix_de_revient from vue_prix_ingredient_p
 
 -----VIew prix total par commande
 create view vue_total_par_commande as select a.id,a.date,a.idServeur,sum(ad.prix) as prix from Addition as a join AdditionDetails  as ad on a.id=ad.idAddition group by a.id;
+
+-----VIew plat additionDetails
+create view  plat_AdditionDetails as select ad.*,plat.descri as nom from additionDetails as ad join plat on ad.idPlat=plat.id;
