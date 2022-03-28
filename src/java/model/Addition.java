@@ -64,10 +64,8 @@ public class Addition {
         this.prixTotal = prixTotal;
     }
     
-    public static void ajouterCommande(String idTable,String date,Connection con)throws Exception{
-        String req="INSERT INTO Addition VALUES()";
-        Statement stmt=con.createStatement();
-        stmt.executeUpdate(req);
+    public boolean estLibre(String idTable)throws Exception{
+        return true;
     }
     public static void ajouterAddition(String idTable,String idServeur,Connection con)throws Exception{
         String req="INSERT INTO Addition VALUES(default,'"+idTable+"',now(),'"+idServeur+"')";
