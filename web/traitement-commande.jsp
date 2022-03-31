@@ -15,13 +15,13 @@
     Connection con=Connexion.getConnection();
     try{
          
-    Addition.ajouterCommande(idTable, idServeur, con);
+    Addition.ajouterAddition(idTable, idServeur, con);
     }
    catch(Exception e){
     out.print(e.getMessage());
 }
     String idAddition=Addition.getLast(idTable);
-    response.sendRedirect("/ListePlatParCategorie?idAddition="+idAddition+"&idServeur="+idServeur);
+    response.sendRedirect(request.getContextPath()+"/ListePlatParCategorie?idAddition="+idAddition+"&idServeur="+idServeur);
     %>
 <!DOCTYPE html>
 <html>

@@ -136,7 +136,7 @@ create table AdditionDetails(
 );
 Alter table additionDetails add idServeur varchar(10);
 
-update additionDetails set idServeur=4 where id='AddDet16';
+update additionDetails set idServeur=5 where id='AddDet16';
 
 insert into AdditionDetails values (default,'Add1','Plat7',8000);
 insert into AdditionDetails values (default,'Add1','Plat8',5000);

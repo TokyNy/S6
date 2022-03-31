@@ -53,8 +53,8 @@
         
     </body>
     
-    <section class="contact_section layout_padding">
-    <div class="container">
+    <section class="contact_section layout_padding" width="800">
+    <div class="container" width="800">
 
       <h2 class="main-heading">
         Liste de nos plats
@@ -64,11 +64,11 @@
        
 
       </p>
-      <div class="">
-        <div class="contact_section-container">
-          <div class="row">
-            <div class="col-md-6 mx-auto">
-                <div class="contact-form">
+      <div class="" width="800">
+        <div class="contact_section-container" width="800">
+          <div class="row" width="800">
+            <div class="col-md-6 mx-auto" width="800">
+                <div class="contact-form" width="800">
                      <form action="<%=request.getContextPath()%>/ListePlatParCategorie" method="get">
                            
                             <div class="form-group mx-sm-3 mb-2">
@@ -85,7 +85,29 @@
                                 <input type="submit" value="ok" class="btn btn-primary mb-2">
 
                           </form>
-                                <% Vector<Serveur> li=Serveur.getAll();
+                                <form action="insertionCommande.jsp" method="get">
+                                    
+                        
+                               <table class="table" width="800">
+            <thead class="thead-light">
+                <tr>
+                    <th>serveur</th>
+                    <th>plat</th>
+                    <th>prix</th>
+                
+                
+                
+                <th>quantite</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <form action="insertionCommande.jsp" method="get">
+                     <% Vector<Plat> liste=(Vector<Plat>)request.getAttribute("listePlat");
+                    for(int j=0;j<liste.size();j++){
+                %>
+            <tr>
+                <td> <% Vector<Serveur> li=Serveur.getAll();
                                     
                                     
                                     %>
@@ -97,35 +119,27 @@
                                          
                                          <option value="<% out.print(li.get(g).getId()); %>"><% out.print(li.get(g).getNom()); %></option>
                                          <% } %>
-                                    </select>
-                        
-                               <table class="table">
-            <thead class="thead-light">
-                <tr>
-                <th>plat</th>
-                <th>prix</th>
-                <th>quantite</th>
-            </tr>
-
-            </thead>
-            <tbody>
-                            <% Vector<Plat> liste=(Vector<Plat>)request.getAttribute("listePlat");
-                    for(int j=0;j<liste.size();j++){
-                %>
-            <tr>
+                                    </select></td>
+            <input type="text" name="idAddition" value="<% out.print(request.getParameter("idAddition")); %>" style="display: none;" >
                 
                 <td><% out.println(liste.get(j).getDesc()); %> </td>
                 <td><% out.println(liste.get(j).getPrix()); %></td>
-                
+                <input type="text" name="idPlat" value="<%out.print(liste.get(j).getId()); %>" style="display:none;">
                 <td><input type="number" name="quantite"></td>
                 <td><a href="detailProduit.jsp?id=<%out.print(liste.get(j).getId()); %>">voir detail</a></td>
                 
-                <td><a href="insertionCommande.jsp?idProduit=<%out.print(liste.get(j).getId()); %>&quantite=<%out.print(request.getParameter("quantite")) ;%>&idAddition=<%out.print(request.getParameter("idAddition")); %>&idServe=<%out.print(request.getParameter("idSer")); %>">commander</a></td>
+                <td><input type="submit" value="ok"></td>
             </tr>
             <% } %>
-            </tbody>
+           
             
+            </form>
+             </tbody>
+                       
         </table>
+                               
+                                </form>
+                                
                                 
                                 
                                     
