@@ -200,3 +200,8 @@ create view vue_total_par_commande as select a.id,a.date,ad.idServeur,sum(ad.pri
 
 -----VIew plat additionDetails
 create view  plat_AdditionDetails as select ad.*,plat.descri as nom from additionDetails as ad join plat on ad.idPlat=plat.id;
+
+create view total_addition_par_table as
+select a.id,a.idTable,a.date,SUM(ad.prix) as prixTotal
+from AdditionDetails ad join Addition a on ad.idAddition=a.id
+GROUP BY a.id;
