@@ -83,7 +83,7 @@
                                     <input type="submit" value="ok">
                                 
                     </form>
-                                    <section class="contact_section layout_padding">
+                                    <p><a href="addtionParTable.jsp">voir addition par table</a></p>
     
                 </div>
                     

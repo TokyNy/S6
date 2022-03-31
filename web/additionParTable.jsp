@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listeDetailsCommande
-    Created on : 31 mars 2022, 14:35:04
+    Document   : additionParTable
+    Created on : 31 mars 2022, 15:03:59
     Author     : ACER
 --%>
 
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <title>JSP Page</title>
         <meta charset="utf-8" />
@@ -47,11 +47,11 @@
 
     </head>
     <body>
-         <section class="contact_section layout_padding" width="800">
+             <section class="contact_section layout_padding" width="800">
     <div class="container" width="800">
 
       <h2 class="main-heading">
-        Details commande
+        Addition par table
 
       </h2>
       <p class="text-center">
@@ -64,24 +64,24 @@
             <div class="col-md-6 mx-auto" width="800">
                 <div class="contact-form" width="800">
                      <% 
-                         String idAddition=request.getParameter("idAddition");
-                          Addition a=new Addition();
-                          Vector<AdditionDetails> listeAddition=a.getListeDetail(idAddition);
+                         Vector<AdditionTable> addition=AdditionTable.getAll();
+                         
+                          
                      %>
                      <table class="table">
                          <thead>
                              <tr>
-                                 <th>Plat</th>
-                                 <th>Quantite</th>
+                                 <th>table</th>
+                                 <th>date</th>
                                  <th>Prix total</th>
                              </tr>
                          </thead>
                          <tbody>
-                             <% for(int i=0;i<listeAddition.size();i++){ %>
+                             <% for(int i=0;i<addition.size();i++){ %>
                              <tr>
-                                 <td><% out.print(listeAddition.get(i).getIdPlat()); %></td>
-                                 <td><% out.print(listeAddition.get(i).getId()); %></td>
-                                 <td><% out.print(listeAddition.get(i).getPrix()); %></td>
+                                 <td><% out.print(addition.get(i).getIdTable()); %></td>
+                                 <td><% out.print(addition.get(i).getDate()); %></td>
+                                 <td><% out.print(addition.get(i).getPrixTotal()); %></td>
                              </tr>
                              <% } %>
                          </tbody>
@@ -98,6 +98,5 @@
     </div>
   </section>
 
-   
     </body>
 </html>

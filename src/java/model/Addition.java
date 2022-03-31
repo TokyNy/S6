@@ -81,7 +81,7 @@ public class Addition {
     public Vector<AdditionDetails> getListeDetail(String id)throws Exception{
         Connection con=Connexion.getConnection();
         Vector<AdditionDetails> retour=new Vector();
-        String req="SELECT idPlat,nom,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+id+"' GROUP BY idPlat,nom";
+        String req="SELECT idPlat,nom,idAddition,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+id+"' GROUP BY idPlat,nom,idAddition";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
