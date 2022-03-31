@@ -71,18 +71,20 @@ public class AdditionDetails {
         Connection con=Connexion.getConnection();
         con.setAutoCommit(false);
         int quantite=Integer.valueOf(qte);
-        for(int i=0;i<quantite;i++){
-            try{
+        try{
+            for(int i=0;i<quantite;i++){
                 ajoutDetail(idAddition,idPlat,idServeur,con);
-                con.commit();
-            }catch(Exception e){
-                con.rollback();
-                e.printStackTrace();
-                throw new Exception(e.getMessage());
-            }finally{
-                con.close();
+                
             }
-            
+            con.commit();
+        }catch(Exception e){
+            con.rollback();
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }finally{
+            con.close();
         }
+        
+        
     }
 }
