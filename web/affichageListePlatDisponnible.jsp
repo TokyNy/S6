@@ -57,7 +57,7 @@
     <div class="container" width="800">
 
       <h2 class="main-heading">
-        Liste de nos plats
+        Liste de nos plats disponible
 
       </h2>
       <p class="text-center">
