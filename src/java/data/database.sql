@@ -138,14 +138,14 @@ Alter table additionDetails add idServeur varchar(10);
 
 update additionDetails set idServeur=5 where id='AddDet16';
 
-insert into AdditionDetails values (default,'Add1','Plat7',8000);
-insert into AdditionDetails values (default,'Add1','Plat8',5000);
-insert into AdditionDetails values (default,'Add1','Plat8',5000);
+insert into AdditionDetails values (default,'Add1','Plat4',8000,'Serv1');
+insert into AdditionDetails values (default,'Add1','Plat5',5000,'Serv1');
+insert into AdditionDetails values (default,'Add1','Plat6',5000,'Serv2');
 
 
-insert into AdditionDetails values (default,'Add4','Plat4',6000);
-insert into AdditionDetails values (default,'Add4','Plat4',5000);
-insert into AdditionDetails values (default,'Add4','Plat5',3000);
+insert into AdditionDetails values (default,'Add2','Plat4',6000,'Serv2');
+insert into AdditionDetails values (default,'Add2','Plat4',5000,'Serv2');
+insert into AdditionDetails values (default,'Add2','Plat5',3000,'Serv1');
 insert into AdditionDetails values (default,'Add5','Plat7',6000);
 insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);

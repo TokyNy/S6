@@ -73,22 +73,18 @@ public class AdditionDetails {
         int quantite=Integer.valueOf(qte);
         try{
             for(int i=0;i<quantite;i++){
-            
                 ajoutDetail(idAddition,idPlat,idServeur,con);
                 
-            
-            
-        }
-        con.commit();
-        }
-        catch(Exception e){
+            }
+            con.commit();
+        }catch(Exception e){
             con.rollback();
             e.printStackTrace();
             throw new Exception(e.getMessage());
-        }
-        finally{
+        }finally{
             con.close();
         }
+        
         
     }
     

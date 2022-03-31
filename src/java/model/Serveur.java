@@ -9,7 +9,9 @@ import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.Date;
 
 /**
  *
@@ -61,17 +63,39 @@ public class Serveur {
         double[] retour=new double[2];
         retour[0]=0.0;
         retour[1]=0.0;
-        if(date1==null || date1.isEmpty()==true || date2==null || date2.isEmpty()==true){
+        
+        Date today=new Date();
+        /*if(date1==null || date1.isEmpty()==true || date2==null || date2.isEmpty()==true){
             return retour;
+        }*/
+        System.out.println(date1);
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MMM-dd HH:mm");
+        //Date d1=formatter.parse(date1.replace("T"," "));
+        //Date d2=formatter.parse(date2.replace("T"," "));
+        //if(d1.after(d2)){
+        //    throw new Exception("Date1 doit etre anterieure à Date2");
+        //}
+        String sql="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"'";
+        if(date1==null || date1.isEmpty()==true){
+            if(date2==null || date2.isEmpty()==true)sql+=" AND date::TIMESTAMP::DATE>=CURRENT_DATE";
+        }else{
+            sql+=" AND date>='"+date1+"'";
         }
-        String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
+        if(date2==null || date2.isEmpty()==true){
+            sql+=" AND date::TIMESTAMP::DATE<=CURRENT_DATE";
+        }else{
+            sql+=" AND date<='"+date2+"'";
+        }
+        System.out.println(sql);
+        //String req="SELECT SUM(prix) as prix FROM vue_total_par_commande WHERE idServeur='"+this.getId()+"' and date>='"+date1+"' and date<='"+date2+"'";
         Statement stmt=con.createStatement();
-        ResultSet res=stmt.executeQuery(req);
+        ResultSet res=stmt.executeQuery(sql);
         while(res.next()){
             retour[0]=res.getDouble("prix");
             retour[1]=(res.getDouble("prix")*pourc)/100;
         }
         con.close();
+        
         return retour;
     }
     
