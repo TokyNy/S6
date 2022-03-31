@@ -63,6 +63,12 @@ public class Addition {
         this.date = date;
         this.prixTotal = prixTotal;
     }
+
+    public Addition(String id, String idTable, Date date) {
+        this.id = id;
+        this.idTable = idTable;
+        this.date = date;
+    }
     
     public boolean estLibre(String idTable)throws Exception{
         return true;
@@ -72,14 +78,14 @@ public class Addition {
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
     }
-    public Vector<AdditionDetails> getListeDetail()throws Exception{
+    public Vector<AdditionDetails> getListeDetail(String id)throws Exception{
         Connection con=Connexion.getConnection();
         Vector<AdditionDetails> retour=new Vector();
-        String req="SELECT * FROM plat_AdditionDetails WHERE idAddition='"+this.getId()+"'";
+        String req="SELECT idPlat,nom,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+id+"' GROUP BY idPlat,nom";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
-            retour.add(new AdditionDetails(res.getString("idAdditionDetails"),res.getString("idAddition"),res.getString("nom"),res.getDouble("prix")));
+            retour.add(new AdditionDetails(res.getString("quantite"),res.getString("idAddition"),res.getString("nom"),res.getDouble("prix")));
         }
         res.close();
         stmt.close();
@@ -100,4 +106,19 @@ public class Addition {
         con.close();
         return retour;
     }
+    public static Vector<Addition> getAll()throws Exception{
+        Connection con=Connexion.getConnection();
+        String req="SELECT * FROM Addition";
+        Vector<Addition> retour=new Vector();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.add(new Addition(res.getString("id"),res.getString("idTable"),res.getDate("date")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
+    
 }
