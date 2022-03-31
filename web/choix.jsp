@@ -50,7 +50,7 @@
        <div class="container">
 
       <h2 class="main-heading">
-        Liste de nos plats
+       Choisir la table
 
       </h2>
       <p class="text-center">
@@ -67,23 +67,23 @@
                                     
                                     
                                     %>
-                                    <select name="idServeur">
+                                    <p> Serveur : <select name="idServeur" class="form-control" id="exampleFormControlSelect1">
                                         <% for(int g=0;g<li.size();g++){
                                          %>
                                          <option value="<% out.print(li.get(g).getId()); %>"><% out.print(li.get(g).getNom()); %></option>
                                          <% } %>
-                                    </select>
-                                    <select name="idTable">
+                                        </select></p>
+                                        <p> Table: <select name="idTable" class="form-control" id="exampleFormControlSelect1">
                                         <% Vector<Table> listeTable=Table.getAll();
                                         for(int k=0;k<listeTable.size();k++){
                                         %>
                                         <option value="<% out.print(listeTable.get(k).getId()); %>"><% out.print(listeTable.get(k).getDesc()); %></option>
                                         <% } %>
-                                    </select>
+                                            </select><p>
                                     <input type="submit" value="ok">
                                 
                     </form>
-                                    <p><a href="addtionParTable.jsp">voir addition par table</a></p>
+                                    <p><a href="additionParTable.jsp">voir addition par table</a></p>
     
                 </div>
                     

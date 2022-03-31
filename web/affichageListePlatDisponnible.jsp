@@ -70,7 +70,8 @@
             <div class="col-md-6 mx-auto" width="800">
                 <div class="contact-form" width="800">
                      <form action="<%=request.getContextPath()%>/ListePlatParCategorie" method="get">
-                           
+                         <input type="text" name="idAddtion" value="<% out.print(request.getParameter("idAddition")); %>" style="display: none;">
+                         <input type="text" name="idServeur" value="<% out.print(request.getParameter("idServeur")); %>" style="display: none;">
                             <div class="form-group mx-sm-3 mb-2">
                        <select name="idCategorie" class="form-control" id="exampleFormControlSelect1">
                                     <% Vector<Categorie> l=(Vector<Categorie>)request.getAttribute("listeCategorie");
@@ -102,11 +103,13 @@
 
             </thead>
             <tbody>
-            <form action="insertionCommande.jsp" method="get">
+            
                      <% Vector<Plat> liste=(Vector<Plat>)request.getAttribute("listePlat");
                     for(int j=0;j<liste.size();j++){
+                        String id=liste.get(j).getId();
                 %>
             <tr>
+                <form action="insertionCommande.jsp" method="get">
                 <td> <% Vector<Serveur> li=Serveur.getAll();
                                     
                                     
@@ -124,16 +127,18 @@
                 
                 <td><% out.println(liste.get(j).getDesc()); %> </td>
                 <td><% out.println(liste.get(j).getPrix()); %></td>
-                <input type="text" name="idPlat" value="<%out.print(liste.get(j).getId()); %>" style="display:none;">
+                <input type="text" name="idPlat" value="<%out.print(id); %>" style="display:none;">
                 <td><input type="number" name="quantite"></td>
                 <td><a href="detailProduit.jsp?id=<%out.print(liste.get(j).getId()); %>">voir detail</a></td>
                 
                 <td><input type="submit" value="ok"></td>
+                 </form>
             </tr>
+            
             <% } %>
            
             
-            </form>
+           
              </tbody>
                        
         </table>

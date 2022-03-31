@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="java.util.Vector"%>
+<%@page import="java.sql.Date"%>
 <%@page import="model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,21 +72,27 @@
                      <table class="table">
                          <thead>
                              <tr>
+                                 <th>reference</th>
                                  <th>table</th>
                                  <th>date</th>
+                                 
                                  <th>Prix total</th>
+                                 
                              </tr>
                          </thead>
                          <tbody>
                              <% for(int i=0;i<addition.size();i++){ %>
                              <tr>
+                                  <td><% out.print(addition.get(i).getIdAddition()); %></td>
                                  <td><% out.print(addition.get(i).getIdTable()); %></td>
                                  <td><% out.print(addition.get(i).getDate()); %></td>
                                  <td><% out.print(addition.get(i).getPrixTotal()); %></td>
+                                 <td><a href="listeDetailsCommande.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir details</a></td>
                              </tr>
                              <% } %>
                          </tbody>
                      </table>
+                         
                 </div>
                     
                       
