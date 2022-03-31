@@ -137,6 +137,7 @@
              </tbody>
                        
         </table>
+            <p><a href="listeDetailsCommande.jsp?idAddition=<% out.print(request.getParameter("idAddition")); %>">Voir mes commandes</a></p>
                                
                                 </form>
                                 

@@ -72,10 +72,10 @@ public class Addition {
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
     }
-    public Vector<AdditionDetails> getListeDetail()throws Exception{
+    public Vector<AdditionDetails> getListeDetail(String id)throws Exception{
         Connection con=Connexion.getConnection();
         Vector<AdditionDetails> retour=new Vector();
-        String req="SELECT * FROM plat_AdditionDetails WHERE idAddition='"+this.getId()+"'";
+        String req="SELECT * FROM plat_AdditionDetails WHERE idAddition='"+id+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){

@@ -4,6 +4,7 @@
     Author     : ACER
 --%>
 
+<%@page import="java.util.Vector"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.*"%>
@@ -13,7 +14,7 @@
     String date2=request.getParameter("date2");
     //double pourcentage=Double.valueOf(request.getParameter("pourcentage"));
     Connection con=Connexion.getConnection();
-   Vector<Serveur> listeServeur=Serveur.getAll(con);
+   Vector<Serveur> listeServeur=Serveur.getAll();
     %>
 <!DOCTYPE html>
 <html>
