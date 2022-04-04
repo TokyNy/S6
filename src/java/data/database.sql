@@ -135,6 +135,8 @@ create table AdditionDetails(
     FOREIGN KEY(idPlat) REFERENCES Plat(id)
 );
 Alter table additionDetails add idServeur varchar(10);
+Alter table additionDetails add etat varchar(1);
+
 
 update additionDetails set idServeur=5 where id='AddDet16';
 
