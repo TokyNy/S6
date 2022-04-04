@@ -209,4 +209,4 @@ from AdditionDetails ad join Addition a on ad.idAddition=a.id
 GROUP BY a.id;
 
 ---view relation plat_addition_additiondetails
-create view plat_addition as  select ad.*,p.descri,p.prix,p.idcategorie,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id; 
+create view plat_addition as  select ad.*,p.descri,p.prix,p.idcategorie,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id order by a.date; 
