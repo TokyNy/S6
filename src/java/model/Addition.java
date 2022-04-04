@@ -128,5 +128,28 @@ public class Addition {
         stmt.close();
         con.close();
     }
-    
+    public Vector<AdditionDetails> voirListeLivre()throws Exception{
+        Connection con=Connexion.getConnection();
+        Vector<AdditionDetails> retour=new Vector();
+        String req="SELECT idPlat,nom,idAddition,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+id+"' and etat='3' GROUP BY idPlat,nom,idAddition";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.add(new AdditionDetails(res.getString("quantite"),res.getString("idAddition"),res.getString("nom"),res.getDouble("prix")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
+    public static Addition getById(String id,Connection con)throws Exception{
+        String req="SELECT * FROM Addition WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Addition retour=null;
+        while(res.next()){
+            retour=new Addition(res.getString("id"),res.getString("idTable"),res.getDate("date"));
+        }
+        return retour;
+    }
 }

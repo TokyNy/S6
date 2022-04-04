@@ -87,6 +87,9 @@ public class AdditionDetails {
         
         
     }
+    /*public static boolean estFini(String id)throws Exception{
+        String req="SELECT COUNT(*) FROM AdditionDetails WHERE "
+    }*/
     public static void finir(String id)throws Exception{
         Connection con=Connexion.getConnection();
         String req="UPDATE AdditionDetails set etat='2' WHERE id='"+id+"'";
