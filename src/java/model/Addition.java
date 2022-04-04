@@ -120,5 +120,13 @@ public class Addition {
         con.close();
         return retour;
     }
+    public void valider()throws Exception{
+        String req="UPDATE AdditionDetails set etat='1' WHERE idAddition='"+this.getId()+"'";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        stmt.executeQuery(req);
+        stmt.close();
+        con.close();
+    }
     
 }
