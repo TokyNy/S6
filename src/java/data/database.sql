@@ -155,6 +155,7 @@ insert into AdditionDetails values (default,'Add5','Plat10',3000);
 
 update additiondetails set etat='1' where idPlat='Plat8';
 update additiondetails set etat='2' where idPlat='Plat9';
+update additiondetails set etat='3' where idPlat='Plat7';
 
 create table marge (
     min float,
@@ -208,7 +209,7 @@ create view  plat_AdditionDetails as select ad.*,plat.descri as nom from additio
 
 create view total_addition_par_table as
 select a.id,a.idTable,a.date,SUM(ad.prix) as prixTotal
-from AdditionDetails ad join Addition a on ad.idAddition=a.id
+from AdditionDetails ad join Addition a on ad.idAddition=a.id  where ad.etat='3'
 GROUP BY a.id;
 
 ---view relation plat_addition_additiondetails
