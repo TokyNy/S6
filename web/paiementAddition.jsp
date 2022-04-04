@@ -1,17 +1,16 @@
 <%-- 
-    Document   : additionParTable
-    Created on : 31 mars 2022, 15:03:59
+    Document   : paiementAddition.jsp
+    Created on : 4 avr. 2022, 16:04:27
     Author     : ACER
 --%>
 
-<%@page import="java.util.Vector"%>
-<%@page import="java.sql.Date"%>
 <%@page import="model.*"%>
+<%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <title>JSP Page</title>
         <meta charset="utf-8" />
@@ -48,11 +47,11 @@
 
     </head>
     <body>
-             <section class="contact_section layout_padding" width="800">
+               <section class="contact_section layout_padding" width="800">
     <div class="container" width="800">
 
       <h2 class="main-heading">
-        Addition par table
+          livraison  des plats
 
       </h2>
       <p class="text-center">
@@ -65,32 +64,25 @@
             <div class="col-md-6 mx-auto" width="800">
                 <div class="contact-form" width="800">
                      <% 
-                         Vector<AdditionTable> addition=AdditionTable.getAll();
-                         
-                          
-                     %>
+            Vector<PlatTable>  liste=Livraison.getListeFini();
+
+        %>
                      <table class="table">
-                         <thead>
-                             <tr>
-                                 <th>reference</th>
-                                 <th>table</th>
-                                 <th>date</th>
-                                 <th>Prix total</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <% for(int i=0;i<addition.size();i++){ %>
-                             <tr>
-                                  <td><% out.print(addition.get(i).getIdAddition()); %></td>
-                                 <td><% out.print(addition.get(i).getIdTable()); %></td>
-                                 <td><% out.print(addition.get(i).getDate()); %></td>
-                                 <td><% out.print(addition.get(i).getPrixTotal()); %></td>
-                                 <td><a href="listeDetailsCommande.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir details</a></td>
-                             </tr>
-                             <% } %>
-                         </tbody>
+                         <tr>
+                             <th>addition n°</th>
+                             <th>plat</th>
+                             <th>table n°</th>
+                         </tr>
+                         <% for(int i=0;i<liste.size();i++){ %>
+                         <tr>
+                             <td><% out.print(liste.get(i).getIdAddition()); %></td>
+                             <td><%  out.print(liste.get(i).getIdPlat()); %></td>
+                             <td><%  out.print(liste.get(i).getNomTable()); %></td>
+                             <td><a href="commandeLivre.jsp?idAdditionDetails=<% out.print(liste.get(i).getId()); %>">livrer</a></td>
+                         </tr>
+                         <% } %>
                      </table>
-                         <p><a href="choix.jsp">retour</a></p>
+                         
                          
                 </div>
                     
@@ -103,6 +95,7 @@
 
     </div>
   </section>
+
 
     </body>
 </html>

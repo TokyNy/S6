@@ -63,11 +63,13 @@
           <div class="row" width="800">
             <div class="col-md-6 mx-auto" width="800">
                 <div class="contact-form" width="800">
-                     <% 
+                    <form action="validerCommande.jsp" method="get">
+                        <% 
                          String idAddition=request.getParameter("idAddition");
                           Addition a=new Addition();
                           Vector<AdditionDetails> listeAddition=a.getListeDetail(idAddition);
                      %>
+                     <p><input type="text" name="idAddition" value="<% out.print(idAddition); %>"></p>
                      <table class="table">
                          <thead>
                              <tr>
@@ -86,6 +88,10 @@
                              <% } %>
                          </tbody>
                      </table>
+                         <p><input type="submit" value="valider" class="btn btn-primary mb-2"></p>
+                    </form>
+                     
+                         
                 </div>
                     
                       

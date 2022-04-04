@@ -153,6 +153,10 @@ insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);
 insert into AdditionDetails values (default,'Add5','Plat10',3000);
 
+update additiondetails set etat='1' where idPlat='Plat8';
+update additiondetails set etat='2' where idPlat='Plat9';
+update additiondetails set etat='3' where idPlat='Plat7';
+
 create table marge (
     min float,
     max float,
@@ -205,8 +209,11 @@ create view  plat_AdditionDetails as select ad.*,plat.descri as nom from additio
 
 create view total_addition_par_table as
 select a.id,a.idTable,a.date,SUM(ad.prix) as prixTotal
-from AdditionDetails ad join Addition a on ad.idAddition=a.id
+from AdditionDetails ad join Addition a on ad.idAddition=a.id  where ad.etat='3'
 GROUP BY a.id;
 
 ---view relation plat_addition_additiondetails
-create view plat_addition as  select ad.*,p.descri,p.prix,p.idcategorie,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id order by a.date; 
+create view vue_plat_commande as   select ad.*,p.descri as nomPlat,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id where ad.etat='1' order by a.date; 
+
+--view relation plat_finit_cuisine
+create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2' 
