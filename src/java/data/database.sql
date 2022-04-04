@@ -154,6 +154,7 @@ insert into AdditionDetails values (default,'Add5','Plat8',8000);
 insert into AdditionDetails values (default,'Add5','Plat10',3000);
 
 update additiondetails set etat='1' where idPlat='Plat8';
+update additiondetails set etat='2' where idPlat='Plat9';
 
 create table marge (
     min float,
