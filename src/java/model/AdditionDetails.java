@@ -87,5 +87,20 @@ public class AdditionDetails {
         
         
     }
-    
+    public static void finir(String id)throws Exception{
+        Connection con=Connexion.getConnection();
+        String req="UPDATE AdditionDetails set etat='2' WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+        stmt.close();
+        con.close();
+    }
+    public static void livrer(String id)throws Exception{
+        Connection con=Connexion.getConnection();
+        String req="UPDATE AdditionDetails set etat='3' WHERE id='"+id+"'";
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+        stmt.close();
+        con.close();
+    }
 }
