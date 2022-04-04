@@ -135,6 +135,8 @@ create table AdditionDetails(
     FOREIGN KEY(idPlat) REFERENCES Plat(id)
 );
 Alter table additionDetails add idServeur varchar(10);
+Alter table additionDetails add etat varchar(1);
+
 
 update additionDetails set idServeur=5 where id='AddDet16';
 
@@ -205,3 +207,6 @@ create view total_addition_par_table as
 select a.id,a.idTable,a.date,SUM(ad.prix) as prixTotal
 from AdditionDetails ad join Addition a on ad.idAddition=a.id
 GROUP BY a.id;
+
+---view relation plat_addition_additiondetails
+create view plat_addition as  select ad.*,p.descri,p.prix,p.idcategorie,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id order by a.date; 
