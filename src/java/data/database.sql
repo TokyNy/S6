@@ -216,4 +216,7 @@ GROUP BY a.id;
 create view vue_plat_commande as   select ad.*,p.descri as nomPlat,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id where ad.etat='1' order by a.date; 
 
 --view relation plat_finit_cuisine
-create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2' 
+create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2';
+
+--view listigredient vendu par date
+create view vue_ingredient_vendu as select a.date,i.id,i.descri,pd.poids from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on p.id=ad.idPlat join platdetails as pd on pd.idPlat=p.id join ingredients as i on i.id=pd.idIngredient where ad.etat='2';
