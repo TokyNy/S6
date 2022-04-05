@@ -124,14 +124,14 @@ public class Addition {
         String req="UPDATE AdditionDetails set etat='1' WHERE idAddition='"+this.getId()+"'";
         Connection con=Connexion.getConnection();
         Statement stmt=con.createStatement();
-        stmt.executeQuery(req);
+        stmt.executeUpdate(req);
         stmt.close();
         con.close();
     }
     public Vector<AdditionDetails> voirListeLivre()throws Exception{
         Connection con=Connexion.getConnection();
         Vector<AdditionDetails> retour=new Vector();
-        String req="SELECT idPlat,nom,idAddition,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+id+"' and etat='3' GROUP BY idPlat,nom,idAddition";
+        String req="SELECT idPlat,nom,idAddition,COUNT(idPlat) as quantite,SUM(prix) as prix FROM plat_AdditionDetails WHERE idAddition='"+this.getId()+"' and etat='3' GROUP BY idPlat,nom,idAddition";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
@@ -142,7 +142,8 @@ public class Addition {
         con.close();
         return retour;
     }
-    public static Addition getById(String id,Connection con)throws Exception{
+    public static Addition getById(String id)throws Exception{
+        Connection con=Connexion.getConnection();
         String req="SELECT * FROM Addition WHERE id='"+id+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
@@ -150,6 +151,9 @@ public class Addition {
         while(res.next()){
             retour=new Addition(res.getString("id"),res.getString("idTable"),res.getDate("date"));
         }
+        res.close();
+        stmt.close();
+        con.close();
         return retour;
     }
 }

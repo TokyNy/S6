@@ -153,9 +153,9 @@ insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);
 insert into AdditionDetails values (default,'Add5','Plat10',3000);
 
-update additiondetails set etat='1' where idPlat='Plat8';
-update additiondetails set etat='2' where idPlat='Plat9';
-update additiondetails set etat='3' where idPlat='Plat7';
+update additiondetails set etat='1' where idPlat='Plat4';
+update additiondetails set etat='2' where idPlat='Plat5';
+update additiondetails set etat='3' where idPlat='Plat6';
 
 create table marge (
     min float,
@@ -216,4 +216,4 @@ GROUP BY a.id;
 create view vue_plat_commande as   select ad.*,p.descri as nomPlat,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id where ad.etat='1' order by a.date; 
 
 --view relation plat_finit_cuisine
-create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2' 
+create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2'; 

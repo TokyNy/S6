@@ -78,7 +78,7 @@
                              <td><% out.print(liste.get(i).getIdAddition()); %></td>
                              <td><%  out.print(liste.get(i).getIdPlat()); %></td>
                              <td><%  out.print(liste.get(i).getNomTable()); %></td>
-                             <td><a href="commandeLivre.jsp?idAdditionDetails=<% out.print(liste.get(i).getId()); %>">livrer</a></td>
+                             
                          </tr>
                          <% } %>
                      </table>
