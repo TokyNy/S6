@@ -85,7 +85,7 @@
                                  <td><% out.print(addition.get(i).getIdTable()); %></td>
                                  <td><% out.print(addition.get(i).getDate()); %></td>
                                  <td><% out.print(addition.get(i).getPrixTotal()); %></td>
-                                 <td><a href="listeDetailsCommande.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir details</a></td>
+                                 <td><a href="listeCommandeLivre.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir plat livré</a></td>
                              </tr>
                              <% } %>
                          </tbody>

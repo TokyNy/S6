@@ -8,9 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String idAddition=request.getParameter("idAddition");
-    Addition a=new Addition();
-    Addition b=a.getById(idAddition);
-    Addition.valider(b);
-    response.sendRedirect("listeDetailsCommande.jsp");
+   Addition a=Addition.getById(idAddition);
+    a.valider();
+    response.sendRedirect("listeDetailsCommande.jsp?idAddition="+idAddition);
 %>
 

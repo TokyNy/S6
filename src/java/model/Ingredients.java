@@ -5,9 +5,11 @@
  */
 package model;
 
+import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Vector;
 
 /**
  *
@@ -16,7 +18,7 @@ import java.sql.Statement;
 public class Ingredients {
     String id;
     String desc;
-    Double poids;
+    double poids;
 
     public String getId() {
         return id;
@@ -34,11 +36,11 @@ public class Ingredients {
         this.desc = desc;
     }
 
-    public Double getPoids() {
+    public double getPoids() {
         return poids;
     }
 
-    public void setPoids(Double poids) {
+    public void setPoids(double poids) {
         this.poids = poids;
     }
 
@@ -52,7 +54,7 @@ public class Ingredients {
     }
 
 
-    public Ingredients(String id, String desc, Double poids) {
+    public Ingredients(String id, String desc, double poids) {
         this.id = id;
         this.desc = desc;
         this.poids = poids;
@@ -97,6 +99,31 @@ public class Ingredients {
         while(res.next()){
             retour=res.getDouble("prix_moyen");
         }
+        return retour;
+    }
+    public static Vector<Ingredients> getListeConsomme(String date1,String date2)throws Exception{
+        Connection con=Connexion.getConnection();
+        String sql="SELECT idIngredients,descri,SUM(poids) as poids FROM vue_ingredients_vendu WHERE";
+        if(date1==null || date1.isEmpty()==true){
+            if(date2==null || date2.isEmpty()==true)sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE";
+        }else{
+            sql+=" date>='"+date1+"'";
+        }
+        if(date2==null || date2.isEmpty()==true){
+            sql+=" AND date::TIMESTAMP::DATE<=CURRENT_DATE";
+        }else{
+            sql+=" AND date<='"+date2+"'";
+        }
+        sql+=" GROUP BY idIngredient";
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(sql);
+        Vector<Ingredients> retour=new Vector();
+        while(res.next()){
+            retour.add(new Ingredients(res.getString("idIngredients"),res.getString("descri"),res.getDouble("poids")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
         return retour;
     }
 }

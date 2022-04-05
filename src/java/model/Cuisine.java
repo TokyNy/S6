@@ -23,7 +23,7 @@ public class Cuisine {
         ResultSet res=stmt.executeQuery(req);
         Vector<AdditionDetails> retour=new Vector();
         while(res.next()){
-            retour.add(new AdditionDetails(res.getString("idAdditionDetails"),res.getString("idAddition"),res.getString("nom"),res.getDouble("prix")));
+            retour.add(new AdditionDetails(res.getString("id"),res.getString("idAddition"),res.getString("nomplat"),res.getDouble("prix")));
         }
         con.close();
         return retour;

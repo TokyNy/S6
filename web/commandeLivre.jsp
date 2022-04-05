@@ -9,4 +9,5 @@
 <%
     String idAdditionDetails=request.getParameter("idAdditionDetails");
     AdditionDetails.livrer(idAdditionDetails);
+    response.sendRedirect("livraisonPlat.jsp");
 %>
