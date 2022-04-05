@@ -121,7 +121,7 @@ public class Addition {
         return retour;
     }
     public void valider()throws Exception{
-        String req="UPDATE AdditionDetails set etat='1' WHERE idAddition='"+this.getId()+"'";
+        String req="UPDATE AdditionDetails set etat='1' WHERE idAddition='"+this.getId()+"' AND etat='0'";
         Connection con=Connexion.getConnection();
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);
@@ -155,5 +155,13 @@ public class Addition {
         stmt.close();
         con.close();
         return retour;
+    }
+    public static void annuler(String idAddition,String idPlat)throws Exception{
+        String req="DELETE FROM AdditionDetails WHERE idAddition='"+idAddition+"' AND idPlat='"+idPlat+"'";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+        stmt.close();
+        con.close();
     }
 }
