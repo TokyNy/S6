@@ -119,7 +119,7 @@ public class Ingredients {
         ResultSet res=stmt.executeQuery(sql);
         Vector<Ingredients> retour=new Vector();
         while(res.next()){
-            retour.add(new Ingredients(res.getString("idIngredients"),res.getString("desc"),res.getDouble("poids")));
+            retour.add(new Ingredients(res.getString("idIngredients"),res.getString("descri"),res.getDouble("poids")));
         }
         res.close();
         stmt.close();
