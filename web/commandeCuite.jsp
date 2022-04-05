@@ -9,6 +9,6 @@
 <%
     String idAdditionDetails=request.getParameter("idAdditionDetails");
     AdditionDetails.finir(idAdditionDetails);
-    response.sendRedirect("CommandeCuite.jsp");
+    response.sendRedirect("CommandeCuisine.jsp");
     
     %>

@@ -10,6 +10,6 @@
     String idAddition=request.getParameter("idAddition");
    Addition a=Addition.getById(idAddition);
     a.valider();
-    response.sendRedirect("listeDetailsCommande.jsp");
+    response.sendRedirect("listeDetailsCommande.jsp?idAddition="+idAddition);
 %>
 
