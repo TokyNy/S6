@@ -216,4 +216,18 @@ GROUP BY a.id;
 create view vue_plat_commande as   select ad.*,p.descri as nomPlat,a.date from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on ad.idPlat=p.id where ad.etat='1' order by a.date; 
 
 --view relation plat_finit_cuisine
-create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2'; 
+create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2';
+
+--view listigredient vendu par date
+create view vue_ingredient_vendu as select a.date,i.id,i.descri,pd.poids from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on p.id=ad.idPlat join platdetails as pd on pd.idPlat=p.id join ingredients as i on i.id=pd.idIngredient where ad.etat='2' or ad.etat='3';
+
+create view stockOut as select idingredient,sum(poids) as stockOut from stock  where etat='0' group by idingredient;
+create view stockIn as select idingredient,sum(poids) as stockOut from stock  where etat='1' group by idingredient;
+
+create view vue_stock_ingredient as
+select sI.idingredient,
+case when stockOut is not null then stockIn-stockOut 
+when stockOut is null then stockIn 
+end as stock,i.descri from stockIn as sI left join stockOut as sO on sI.idIngredient=sO.idIngredient join ingredients as i on i.id=sI.idIngredient;
+
+ 

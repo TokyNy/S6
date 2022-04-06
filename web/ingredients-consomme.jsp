@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="model.IngredientConsomme"%>
 <%@page import="model.Ingredients"%>
 <%@page import="model.Serveur"%>
 <%@page import="java.util.Vector"%>
@@ -11,7 +12,7 @@
 <%
     String date1=request.getParameter("date1");
     String date2=request.getParameter("date2");
-    Vector<Ingredients> liste=Ingredients.getListeConsomme(date1, date2);
+    Vector<IngredientConsomme> liste=Ingredients.getListeConsomme(date1, date2);
 %>
 <!DOCTYPE html>
 <html>
@@ -75,12 +76,15 @@
                         <input type="submit" value="Filtrer" class="btn btn-primary mb-2">
                     </form>
                 </div>
+                <h2>Total: <%=Ingredients.somme(liste)%> Ar</h2>
                 <table class="table">
                     <thead>
                         <tr>
                         <th>Reference</th>
                         <th>Description</th>
-                        <th>Quantite Total</th>
+                        <th>Quantite Totale</th>
+                        <th>Prix unitaire</th>
+                        <th>Prix Total</th>
                     </tr>
                     </thead>
                     
@@ -92,6 +96,8 @@
                                     <td><%=liste.get(i).getId()%></td>
                                     <td><%=liste.get(i).getDesc()%></td>
                                     <td><%=liste.get(i).getPoids()%></td>
+                                    <td><%=liste.get(i).getPrix()%></td>
+                                    <td><%=liste.get(i).getPrixTotal()%></td>
                                 </tr>
                             <%}%>
                         

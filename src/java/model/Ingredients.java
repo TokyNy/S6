@@ -101,11 +101,12 @@ public class Ingredients {
         }
         return retour;
     }
-    public static Vector<Ingredients> getListeConsomme(String date1,String date2)throws Exception{
+    
+    public static Vector<IngredientConsomme> getListeConsomme(String date1,String date2)throws Exception{
         Connection con=Connexion.getConnection();
-        String sql="SELECT idIngredients,descri,SUM(poids) as poids FROM vue_ingredients_vendu WHERE";
+        String sql="SELECT id,descri,SUM(poids) as poids,AVG(prix_moyen) as prix FROM vue_ingredient_vendu vi join vue_prix_moyen pm on pm.idIngredient=vi.id WHERE";
         if(date1==null || date1.isEmpty()==true){
-            if(date2==null || date2.isEmpty()==true)sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE";
+            sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE";
         }else{
             sql+=" date>='"+date1+"'";
         }
@@ -114,16 +115,23 @@ public class Ingredients {
         }else{
             sql+=" AND date<='"+date2+"'";
         }
-        sql+=" GROUP BY idIngredient";
+        sql+=" GROUP BY id,descri";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(sql);
-        Vector<Ingredients> retour=new Vector();
+        Vector<IngredientConsomme> retour=new Vector();
         while(res.next()){
-            retour.add(new Ingredients(res.getString("idIngredients"),res.getString("descri"),res.getDouble("poids")));
+            retour.add(new IngredientConsomme(Math.round(res.getDouble("prix")),Math.round(res.getDouble("prix")*res.getDouble("poids")),res.getString("id"),res.getString("descri"),res.getDouble("poids")));
         }
         res.close();
         stmt.close();
         con.close();
         return retour;
+    }
+    public static double somme(Vector<IngredientConsomme> liste){
+        double prix=0.0;
+        for(int i=0;i<liste.size();i++){
+            prix+=liste.get(i).getPrixTotal();
+        }
+        return prix;
     }
 }

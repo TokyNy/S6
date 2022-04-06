@@ -13,7 +13,8 @@ public class PlatDetails {
     String id;
     String idPlat;
     String idIngredient;
-    Double poids;
+    double poids;
+    double prix;
 
     public String getId() {
         return id;
@@ -39,22 +40,38 @@ public class PlatDetails {
         this.idIngredient = idIngredient;
     }
 
-    public Double getPoids() {
+    public double getPoids() {
         return poids;
     }
 
-    public void setPoids(Double poids) {
+    public void setPoids(double poids) {
         this.poids = poids;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
     public PlatDetails() {
     }
 
-    public PlatDetails(String id, String idPlat, String idIngredient, Double poids) {
+    public PlatDetails(String id, String idPlat, String idIngredient, double poids) {
         this.id = id;
         this.idPlat = idPlat;
         this.idIngredient = idIngredient;
         this.poids = poids;
+    }
+
+    public PlatDetails(String id, String idPlat, String idIngredient, double poids, double prix) {
+        this.id = id;
+        this.idPlat = idPlat;
+        this.idIngredient = idIngredient;
+        this.poids = poids;
+        this.prix = prix;
     }
     
     
