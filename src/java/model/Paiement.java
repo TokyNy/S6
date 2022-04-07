@@ -66,7 +66,7 @@ public class Paiement {
         Connection con=Connexion.getConnection();
         Vector<PaiementDate> retour=new Vector();
         //String req="SELECT p.idTypePaiement,tp.nom as nomType,SUM(montant) as montant FROM Paiement p join TypePaiement tp on p.idTypePaiement=tp.id WHERE p.date>='"+date1+"' AND p.date2<='"+date2+"' GROUP BY p.idTypePaiement,tp.nom";
-        String sql="SELECT p.idTypePaiement,tp.nom as nomType,SUM(montant) as montant FROM Paiement p join TypePaiement tp on p.idTypePaiement=tp.id WHERE";
+        String sql="SELECT p.idTypePaiement,tp.intitule as nomType,SUM(montant) as montant FROM Paiement p join TypePaiement tp on p.idTypePaiement=tp.id WHERE";
         if(date1==null || date1.isEmpty()==true){
             sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE";
         }else{
@@ -77,7 +77,7 @@ public class Paiement {
         }else{
             sql+=" AND date<='"+date2+"'";
         }
-        sql+=" GROUP BY p.idTypePaiement,tp.nom";
+        sql+=" GROUP BY p.idTypePaiement,tp.intitule";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(sql);
         while(res.next()){
