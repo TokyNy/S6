@@ -45,19 +45,19 @@ public class DetailPrix extends PlatDetails{
         this.idIngredient = idIngredient;
     }
 
-    public Double getPoids() {
+    public double getPoids() {
         return poids;
     }
 
-    public void setPoids(Double poids) {
+    public void setPoids(double poids) {
         this.poids = poids;
     }
 
-    public Double getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(Double prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 
@@ -65,12 +65,12 @@ public class DetailPrix extends PlatDetails{
         this.prixMoyen = prixMoyen;
     }
 
-    public DetailPrix(Double prixMoyen, String id, String idPlat, String idIngredient, Double poids) {
+    public DetailPrix(Double prixMoyen, String id, String idPlat, String idIngredient, double poids) {
         super(id, idPlat, idIngredient, poids);
         this.prixMoyen = prixMoyen;
     }
 
-    public DetailPrix(Double prixMoyen, Double prix) {
+    public DetailPrix(double prixMoyen, double prix) {
         this.prixMoyen = prixMoyen;
         this.prix = prix;
     }

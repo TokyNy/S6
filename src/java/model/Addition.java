@@ -157,7 +157,8 @@ public class Addition {
         return retour;
     }
     public static void annuler(String idAddition,String idPlat)throws Exception{
-        String req="DELETE FROM AdditionDetails WHERE idAddition='"+idAddition+"' AND idPlat='"+idPlat+"'";
+        String req="DELETE FROM AdditionDetails WHERE idAddition='"+idAddition+"' AND idPlat in(SELECT id FROM Plat WHERE descri='"+idPlat+"')";
+        System.out.println(req);
         Connection con=Connexion.getConnection();
         Statement stmt=con.createStatement();
         stmt.executeUpdate(req);

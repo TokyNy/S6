@@ -82,11 +82,11 @@ public class Plat {
     
     public Vector<PlatDetails> getListeDetail(Connection con)throws Exception{
         Vector<PlatDetails> retour=new Vector();
-        String req="SELECT * FROM PlatDetails WHERE idPlat='"+this.getId()+"'";
+        String req="SELECT pd.*,pm.prix_moyen FROM PlatDetails pd join vue_prix_moyen pm on pm.idIngredient=pd.idIngredient WHERE idPlat='"+this.getId()+"'";
         Statement stmt=con.createStatement();
         ResultSet res=stmt.executeQuery(req);
         while(res.next()){
-            PlatDetails pd=new PlatDetails(res.getString("id"),res.getString("idPlat"),res.getString("idIngredient"),res.getDouble("poids"));
+            PlatDetails pd=new PlatDetails(res.getString("id"),res.getString("idPlat"),res.getString("idIngredient"),res.getDouble("poids"),res.getDouble("prix_moyen"));
             retour.add(pd);
         }
         return retour;
@@ -160,5 +160,11 @@ public class Plat {
             }
         }
         return retour;
+    }
+    public void changerStock(Connection con)throws Exception{
+        Vector<PlatDetails> liste=this.getListeDetail(con);
+        for(int i=0;i<liste.size();i++){
+            Stock.insert(liste.get(i).getIdIngredient(), liste.get(i).getPoids(), 0, liste.get(i).getPrix(), con);
+        }
     }
 }

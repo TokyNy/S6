@@ -1,16 +1,22 @@
 <%-- 
-    Document   : listeDetailsCommande
-    Created on : 31 mars 2022, 14:35:04
-    Author     : ACER
+    Document   : stock
+    Created on : 5 avr. 2022, 11:00:51
+    Author     : ASUS
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="model.Ingredients"%>
 <%@page import="java.util.Vector"%>
-<%@page import="model.*"%>
+<%@page import="model.Stock"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Date d=new Date();
+    Vector<Ingredients> liste=Stock.getStockIngredient();
+%>
 <!DOCTYPE html>
 <html>
     <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <title>JSP Page</title>
         <meta charset="utf-8" />
@@ -22,7 +28,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Adward</title>
+  <title>Projet resto</title>
 
 
 
@@ -47,11 +53,11 @@
 
     </head>
     <body>
-         <section class="contact_section layout_padding" width="800">
+             <section class="contact_section layout_padding" width="800">
     <div class="container" width="800">
 
       <h2 class="main-heading">
-        Details commande
+        Stock des ingredients
 
       </h2>
       <p class="text-center">
@@ -63,35 +69,26 @@
           <div class="row" width="800">
             <div class="col-md-6 mx-auto" width="800">
                 <div class="contact-form" width="800">
-                    <form action="validerCommande.jsp" method="get">
-                        <% 
-                         String idAddition=request.getParameter("idAddition");
-                          Addition a=new Addition();
-                          Vector<AdditionDetails> listeAddition=a.getListeDetail(idAddition);
-                     %>
-                     <p><input type="text" name="idAddition" value="<% out.print(idAddition); %>"></p>
+                     
                      <table class="table">
                          <thead>
                              <tr>
-                                 <th>Plat</th>
-                                 <th>Quantite</th>
-                                 <th>Prix total</th>
+                                 <th>reference</th>
+                                 <th>Description</th>
+                                 <th>Stock</th>
                              </tr>
                          </thead>
                          <tbody>
-                             <% for(int i=0;i<listeAddition.size();i++){ %>
+                             <% for(int i=0;i<liste.size();i++){ %>
                              <tr>
-                                 <td><% out.print(listeAddition.get(i).getIdPlat()); %></td>
-                                 <td><% out.print(listeAddition.get(i).getId()); %></td>
-                                 <td><% out.print(listeAddition.get(i).getPrix()); %></td>
-                                 <td><a href="traitement-annuler-commande.jsp?idAddition=<%=idAddition%>&idPlat=<%=listeAddition.get(i).getIdPlat()%>">Annuler</a></td>
+                                  <td><% out.print(liste.get(i).getId()); %></td>
+                                    <td><% out.print(liste.get(i).getDesc()); %></td>
+                                    <td><% out.print(liste.get(i).getPoids()); %></td>
                              </tr>
                              <% } %>
                          </tbody>
                      </table>
-                         <p><input type="submit" value="valider" class="btn btn-primary mb-2"></p>
-                    </form>
-                     
+                         <p><a href="choix.jsp">retour</a></p>
                          
                 </div>
                     
@@ -105,6 +102,5 @@
     </div>
   </section>
 
-   
     </body>
 </html>

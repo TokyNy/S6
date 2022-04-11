@@ -278,6 +278,10 @@ create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomP
 
 create view stockOut as select idingredient,sum(poids) as stockOut from stock  where etat='0' group by idingredient;
 create view stockIn as select idingredient,sum(poids) as stockIn from stock  where etat='1' group by idingredient;
+create view vue_ingredient_vendu as select a.date,i.id,i.descri,pd.poids from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on p.id=ad.idPlat join platdetails as pd on pd.idPlat=p.id join ingredients as i on i.id=pd.idIngredient where ad.etat='2' or ad.etat='3';
+
+create view stockOut as select idingredient,sum(poids) as stockOut from stock  where etat='0' group by idingredient;
+create view stockIn as select idingredient,sum(poids) as stockOut from stock  where etat='1' group by idingredient;
 
 create view vue_stock_ingredient as
 select sI.idingredient,
@@ -293,3 +297,31 @@ select * from inventaire order by date limit 1 where idIngredient=;
 ---view addition non payer
 create view vue_addition_non_payer as 
 select addition.* from addition join additiondetails as ad on addition.id=ad.idAddition where ad.id not in (SELECT idAdditiondetails from paiement);
+ create sequence seqPaie start with 1 increment by 1;
+create sequence seqTypePaie start with 1 increment by 1;
+
+create table TypePaiement (
+        id varchar(10) not null default concat('TypePaie',nextval('seqTypePaie')),
+        intitule varchar(15) not null,
+        PRIMARY KEY(id)
+);
+
+insert into typePaiement values (default,'espece');
+insert into typePaiement values (default,'mobile money');
+
+create table Paiement (
+        id varchar(10) not null default concat('Paie',nextval('seqPaie')),
+        idAdditionDetails varchar(10) not null,        
+        idTypePaiement varchar(10) not null,
+        montant float not null,
+        date timestamp,
+        PRIMARY KEY(id),
+        FOREIGN KEY(idAdditionDetails) REFERENCES AdditionDetails(id),
+        FOREIGN KEY(idTypePaiement) REFERENCES TypePaiement(id)
+);
+insert into paiement values (default,'AddDet21','TypePaie1',5000,'2022-04-01 01:00');
+insert into paiement values (default,'AddDet22','TypePaie2',8000,'2022-04-01 01:00');
+insert into paiement values (default,'AddDet27','TypePaie1',5000,now());
+insert into paiement values (default,'AddDet28','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',3000,now());
