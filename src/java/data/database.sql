@@ -325,3 +325,7 @@ insert into paiement values (default,'AddDet27','TypePaie1',5000,now());
 insert into paiement values (default,'AddDet28','TypePaie2',5000,now());
 insert into paiement values (default,'AddDet12','TypePaie2',5000,now());
 insert into paiement values (default,'AddDet12','TypePaie2',3000,now());
+
+
+----view addition  non payer
+create view vue_addition_non_payer as select addition.* from addition join additiondetails as ad on addition.id=ad.idAddition where ad.id not in (SELECT idAdditiondetails from paiement);
