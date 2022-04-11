@@ -8,7 +8,6 @@
             <file>file:/F:/Informatique/S6/src/java/model/AdditionDetails.java</file>
             <file>file:/F:/Informatique/S6/web/pourBoire.jsp</file>
             <file>file:/F:/Informatique/S6/web/livraisonPlat.jsp</file>
-            <file>file:/F:/Informatique/S6/src/java/model/Marge.java</file>
             <file>file:/F:/Informatique/S6/src/java/model/PlatDetails.java</file>
             <file>file:/F:/Informatique/S6/web/traitementPourBoire.jsp</file>
             <file>file:/F:/Informatique/S6/web/traitement-annuler-commande.jsp</file>
@@ -33,11 +32,13 @@
             <file>file:/F:/Informatique/S6/src/java/controller/ListePlatParCategorieServlet.java</file>
             <file>file:/F:/Informatique/S6/src/java/model/Addition.java</file>
             <file>file:/F:/Informatique/S6/web/commandeLivre.jsp</file>
+            <file>file:/F:/Informatique/S6/src/java/model/Paiement.java</file>
             <file>file:/F:/Informatique/S6/src/java/data/database.sql</file>
             <file>file:/F:/Informatique/S6/web/listeCommandeLivre.jsp</file>
+            <file>file:/F:/Informatique/S6/src/java/model/PaiementDate.java</file>
+            <file>file:/F:/Informatique/S6/web/affichagePaiement.jsp</file>
             <file>file:/F:/Informatique/S6/src/java/model/Plat.java</file>
             <file>file:/F:/Informatique/S6/src/java/model/Cuisine.java</file>
-            <file>file:/F:/Informatique/S6/src/java/model/Categorie.java</file>
             <file>file:/F:/Informatique/S6/src/java/model/Serveur.java</file>
             <file>file:/F:/Informatique/S6/web/ingredients-consomme.jsp</file>
             <file>file:/F:/Informatique/S6/web/affichageListePlatDisponnible.jsp</file>
