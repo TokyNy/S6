@@ -7,6 +7,10 @@ create sequence seqPlatDetails start with 1 increment by 1;
 create sequence seqStock start with 1 increment by 1;
 create sequence seqCategorie start with 1 increment by 1;
 create sequence seqServeur start with 1 increment by 1;
+create sequence seqInventaire start with 1 increment by 1;
+create sequence seqPaie start with 1 increment by 1;
+create sequence seqTypePaie start with 1 increment by 1;
+
 
 
 
@@ -80,7 +84,10 @@ create table Stock (
     PRIMARY KEY(id),
     FOREIGN KEY(idIngredient) REFERENCES Ingredients(id)
 );
+
 Alter table Stock add prix float not null;
+Alter table Stock add date timestamp;
+
 
 insert into Stock values (default,'Ing1',1,1,5000);
 insert into Stock values (default,'Ing2',1,1,3000);
@@ -102,6 +109,7 @@ insert into Stock values (default,'Ing5',0.1,0,0);
 insert into Stock values (default,'Ing6',0.1,0,0);
 insert into Stock values (default,'Ing7',0.2,0,0);
 insert into Stock values (default,'Ing8',0.02,0,0);
+
 
 create table TTable(
     id varchar(10) not null default concat('Table',nextval('seqTable')),
@@ -153,9 +161,9 @@ insert into AdditionDetails values (default,'Add5','Plat8',5000);
 insert into AdditionDetails values (default,'Add5','Plat8',8000);
 insert into AdditionDetails values (default,'Add5','Plat10',3000);
 
-update additiondetails set etat='1' where idPlat='Plat8';
-update additiondetails set etat='2' where idPlat='Plat9';
-update additiondetails set etat='3' where idPlat='Plat7';
+update additiondetails set etat='1' where idPlat='Plat4';
+update additiondetails set etat='2' where idPlat='Plat5';
+update additiondetails set etat='3' where idPlat='Plat6';
 
 create table marge (
     min float,
@@ -177,6 +185,50 @@ create table serveur(
 
 insert into serveur values(default,'Rakoto');
 insert into serveur values(default,'Rabe');
+
+
+create table inventaire (
+    id varchar(10) not null default concat('Invent',nextval('seqInventaire')),
+    idIngredient varchar(10) not null,
+    poids float not null,
+    date timestamp not null,
+    PRIMARY KEY(id),
+    FOREIGN KEY(idIngredient) REFERENCES Ingredients(id)
+);
+
+insert into inventaire values (default,'Ing1',2,'2022-04-05 10:00.0');
+insert into inventaire values (default,'Ing1',1,'2022-04-04 10:00.0');
+
+
+insert into inventaire values (default,'Ing2',1.26,'2022-04-04 08:00.0');
+
+create table TypePaiement (
+        id varchar(10) not null default concat('TypePaie',nextval('seqTypePaie')),
+        intitule varchar(15) not null,
+        PRIMARY KEY(id)
+);
+
+insert into typePaiement values (default,'espece');
+insert into typePaiement values (default,'mobile money');
+
+create table Paiement (
+        id varchar(10) not null default concat('Paie',nextval('seqPaie')),
+        idAdditionDetails varchar(10) not null,        
+        idTypePaiement varchar(10) not null,
+        montant float not null,
+        date timestamp,
+        PRIMARY KEY(id),
+        FOREIGN KEY(idAdditionDetails) REFERENCES AdditionDetails(id),
+        FOREIGN KEY(idTypePaiement) REFERENCES TypePaiement(id)
+);
+insert into paiement values (default,'AddDet12','TypePaie1',5000,now());
+insert into paiement values (default,'AddDet11','TypePaie1',8000,now());
+insert into paiement values (default,'AddDet13','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet21','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',3000,now());
+
+
 
 -----VIew Stock in et out avec Ingredient
 create view inOut as
@@ -220,3 +272,24 @@ create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomP
 
 --view listigredient vendu par date
 create view vue_ingredient_vendu as select a.date,i.id,i.descri,pd.poids from addition as a join additiondetails as ad on a.id=ad.idAddition join plat as p on p.id=ad.idPlat join platdetails as pd on pd.idPlat=p.id join ingredients as i on i.id=pd.idIngredient where ad.etat='2';
+create view vue_plat_preparer as select a.idTable,t.descri,ad.*,p.descri as nomPlat from addition as a join additiondetails as ad on a.id=ad.idAddition join ttable t on t.id=a.idtable join  plat as p on p.id=ad.idPlat where ad.etat='2'; 
+
+--view stock par ingredient
+
+create view stockOut as select idingredient,sum(poids) as stockOut from stock  where etat='0' group by idingredient;
+create view stockIn as select idingredient,sum(poids) as stockIn from stock  where etat='1' group by idingredient;
+
+create view vue_stock_ingredient as
+select sI.idingredient,
+case when stockOut is not null then stockIn-stockOut 
+when stockOut is null then stockIn 
+end as stock,i.descri from stockIn as sI left join stockOut as sO on sI.idIngredient=sO.idIngredient join ingredients as i on i.id=sI.idIngredient;
+
+
+---view stock par ingredient avec inventaire
+
+select * from inventaire order by date limit 1 where idIngredient=;
+
+---view addition non payer
+create view vue_addition_non_payer as 
+select addition.* from addition join additiondetails as ad on addition.id=ad.idAddition where ad.id not in (SELECT idAdditiondetails from paiement);
