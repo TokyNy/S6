@@ -165,4 +165,32 @@ public class Addition {
         stmt.close();
         con.close();
     }
+    public static Vector<Addition> getAdditionNonPaye()throws Exception{
+        String req="SELECT * FROM vue_addition_non_payer";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Vector<Addition> retour=new Vector();
+        while(res.next()){
+            retour.add(new Addition(res.getString("id"),res.getString("prix"),res.getDate("date")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
+    public static Vector<AdditionDetails> getNonPaye(String idAddition)throws Exception{
+        String req="SELECT * FROM AdditionDetails WHERE id NOT IN (SELECT idAdditionDetails FROM Paiement) AND idAddition='"+idAddition+"'";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        Vector<AdditionDetails> retour=new Vector();
+        while(res.next()){
+            retour.add(new AdditionDetails(res.getString("id"),res.getString("idAddition"),res.getString("idPlat"),res.getDouble("prix")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
 }
