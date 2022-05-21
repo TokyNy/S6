@@ -53,7 +53,8 @@ public class ListePlatParCategorieServlet extends HttpServlet {
                 con.close();
                 String idAddition=request.getParameter("idAddition");
                 String idServeur=request.getParameter("idServeur");
-                RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponnible.jsp?idAddition="+idAddition+"&idServeur="+idServeur);
+                //RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponnible.jsp?idAddition="+idAddition+"&idServeur="+idServeur);
+                RequestDispatcher dis=request.getRequestDispatcher("affichage-liste-plat-disponnible1.jsp?idAddition="+idAddition+"&idServeur="+idServeur);
                 dis.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(ListePlatParCategorieServlet.class.getName()).log(Level.SEVERE, null, ex);
