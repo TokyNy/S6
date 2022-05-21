@@ -69,7 +69,7 @@ public class Paiement {
         //String sql="SELECT p.idTypePaiement,tp.intitule as nomType,SUM(montant) as montant FROM Paiement p right join TypePaiement tp on p.idTypePaiement=tp.id WHERE";
         String sql="SELECT tp.id as idTypePaiement,tp.intitule as nomType,CASE WHEN SUM(montant) IS NULL THEN 0 ELSE SUM(montant) END montant FROM TypePaiement tp left join Paiement p on p.idTypePaiement=tp.id WHERE ";
         if(date1==null || date1.isEmpty()==true){
-            if(date2==null && date2.isEmpty()==true){
+            if(date2==null || date2.isEmpty()==true){
                 sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE AND";
             }
         }else{
