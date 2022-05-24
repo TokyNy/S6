@@ -62,6 +62,15 @@
           <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="contact-form">
+                    
+                    <% String envoie=request.getParameter("envoie");
+                        if (envoie==null){
+                            out.print("BIENVENUE");
+                        }
+                        else if(envoie=="1"){
+                            out.print("COMMANDE VALIDE");
+                        }
+                    %>
                     <form action="traitement-commande.jsp" method="get">
                         <% Vector<Serveur> li=Serveur.getAll();
                                     
@@ -83,7 +92,7 @@
                                     <input type="submit" value="ok">
                                 
                     </form>
-                                    <p><a href="additionParTable.jsp">voir addition par table</a></p>
+                                   
     
                 </div>
                     

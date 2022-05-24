@@ -42,7 +42,8 @@ public class ListePlatServlet extends HttpServlet {
                 Connection con=Connexion.getConnection();
                 Vector<Plat> listePlats=Plat.getAll(con);
                 con.close();
-                RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponible.jsp");
+                //RequestDispatcher dis=request.getRequestDispatcher("affichageListePlatDisponible.jsp");
+                RequestDispatcher dis=request.getRequestDispatcher("affichage-liste-plat-disponnible1.jsp");
                 dis.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(ListePlatServlet.class.getName()).log(Level.SEVERE, null, ex);

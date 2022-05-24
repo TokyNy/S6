@@ -19,7 +19,7 @@
         plat.changerStock(con);
         con.commit();
         con.close();
-        response.sendRedirect("CommandeCuisine.jsp");
+        response.sendRedirect("commande-cuisine1.jsp");
     }catch(Exception e){
         e.printStackTrace();
         con.rollback();
