@@ -53,13 +53,21 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
+<<<<<<< HEAD
                            <!-- <img src="plugins/images/logo-icon.png" alt="homepage" />
+=======
+                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+>>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
+<<<<<<< HEAD
                         <!--    <img src="plugins/images/logo-text.png" alt="homepage" />
+=======
+                            <img src="plugins/images/logo-text.png" alt="homepage" />
+>>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -90,12 +98,30 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class=" in">
+<<<<<<< HEAD
                                                     </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         
                            
+=======
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                            <a class="profile-pic" href="#">
+                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                        </li>
+>>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -195,9 +221,18 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
+<<<<<<< HEAD
                                
                             </ol>
                             </div>
+=======
+                                <li><a href="#" class="fw-normal">Dashboard</a></li>
+                            </ol>
+                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
+                                to Pro</a>
+                        </div>
+>>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
