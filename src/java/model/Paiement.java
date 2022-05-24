@@ -61,6 +61,17 @@ public class Paiement {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public Paiement() {
+    }
+
+    public Paiement(String id, String idAdditionDetail, String idTypePaiement, double montant, Date date) {
+        this.id = id;
+        this.idAdditionDetail = idAdditionDetail;
+        this.idTypePaiement = idTypePaiement;
+        this.montant = montant;
+        this.date = date;
+    }
     
     public static Vector<PaiementDate> getMontantPaiement(String date1,String date2)throws Exception{
         Connection con=Connexion.getConnection();
@@ -92,5 +103,13 @@ public class Paiement {
         stmt.close();
         con.close();
         return retour;
+    }
+    
+    public static void payer(String idAdditionDetail,String idType,String montant)throws Exception{
+        String req="INSERT INTO Paiement VALUES(default,'"+idAdditionDetail+"','"+idType+"',"+montant+",NOW)";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+        con.close();
     }
 }
