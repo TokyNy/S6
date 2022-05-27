@@ -97,26 +97,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-<<<<<<< HEAD
                         
-=======
-                        <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li>
-                            <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                        </li>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -141,73 +122,48 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="choix1.jsp"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Choix table</span>
-=======
-                                <span class="hide-menu">choix table</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-non-paye1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Liste des additions non payes</span>
-=======
-                                <span class="hide-menu">liste des additions non payes</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="commande-cuisine1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Liste des commandes en cuisine</span>
-=======
-                                <span class="hide-menu">liste des commandes en cuisine</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-par-table1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Liste des additions par table</span>
-=======
-                                <span class="hide-menu">liste des additions par table</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="affichage-paiement1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Paiement</span>
-=======
-                                <span class="hide-menu">paiement</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="ingredients-consomme1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Quantite ingredient</span>
-=======
-                                <span class="hide-menu">quantite ingredient</span>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-<<<<<<< HEAD
                                 <span class="hide-menu">Liste des commandes livré</span>
                             </a>
                         </li>
@@ -233,16 +189,6 @@
                             </a>
                         </li>
                         
-=======
-                                <span class="hide-menu">liste des commandes livré</span>
-                            </a>
-                        </li>
-                        <li class="text-center p-20 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/"
-                                class="btn d-grid btn-danger text-white" target="_blank">
-                                Upgrade to Pro</a>
-                        </li>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                     </ul>
 
                 </nav>
@@ -265,19 +211,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Details additions non payes</h4>
                     </div>
-<<<<<<< HEAD
                   
-=======
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-md-flex">
-                            <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal">Dashboard</a></li>
-                            </ol>
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
-                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
-                                to Pro</a>
-                        </div>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -311,7 +245,6 @@
                          </tr>
                          <% for(int i=0;i<liste.size();i++){ %>
                          <tr>
-<<<<<<< HEAD
                          <form action="traitementInsertionPaix.jsp" method="get">
                              <td><% out.print(liste.get(i).getIdPlat()); %></td>
                              <td><input type="text" value="<% out.print(liste.get(i).getPrix()); %>" name="prix"></td>
@@ -328,12 +261,6 @@
                                  <td><input type="submit" value="payer"></td>
                          </form>
                              
-=======
-                             <td><% out.print(liste.get(i).getIdPlat()); %></td>
-                             <td><% out.print(liste.get(i).getPrix()); %></td>
-                             
-                             <td><a href="#">payer</a></td>
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
                          </tr>
                          <% } %>
                      </table>

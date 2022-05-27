@@ -1,16 +1,6 @@
-<<<<<<< HEAD
 <%@page import="model.Paiement"%>
 <%@page import="model.PaiementDate"%>
 <%@page import="java.util.Vector"%>
-=======
-
-
-<%@page import="java.util.Vector"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
-    
-
->>>>>>> 585f6daf1237e5ae655c320a8bcfc3480e859dea
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -66,13 +56,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+                           <!-- <img src="plugins/images/logo-icon.png" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
+                        <!--    <img src="plugins/images/logo-text.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -103,21 +93,12 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
+                                                    </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li>
-                            <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                        </li>
+                        
+                           
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -135,21 +116,21 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
+               <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="choix1.jsp"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">choix table</span>
+                                <span class="hide-menu">Choix table</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-non-paye1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">liste des additions non payes</span>
+                                <span class="hide-menu">Liste des additions non payes</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -184,7 +165,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Liste des commandes livrï¿½</span>
+                                <span class="hide-menu">Liste des commandes livré</span>
                             </a>
                         </li>
                         <li class="sidebar-item pt-2">
@@ -312,7 +293,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 ï¿½ Ample Admin brought to you by <a
+            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
                     href="https://www.wrappixel.com/">wrappixel.com</a>
             </footer>
             <!-- ============================================================== -->
