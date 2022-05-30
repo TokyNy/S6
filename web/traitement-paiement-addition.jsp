@@ -11,7 +11,7 @@
     String idAddition=request.getParameter("idAddition");
     String montant=request.getParameter("montant");
     Paiement.payer(idAddition,idType,montant);
-    response.sendRedirect("paiement-addition.jsp?idAddition="+idAddition+"");
+    response.sendRedirect("paiement-addition.jsp?idAddition="+idAddition+"&montant="+montant+"");
     %>
 <!DOCTYPE html>
 <html>

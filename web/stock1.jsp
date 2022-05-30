@@ -222,13 +222,27 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal"></a></li>
+                                <li><a href="ajout-stock.jsp" class="fw-normal"><input type="submit" value="Ajouter stock" class="btn btn-primary" style="background-color: blue"></a></li>
                             </ol>
-                            <select  class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" value="exporter">
-                                <option>exporter</option>
-                                <option><a href="#">excel</a></option>
-                            <option><a href="#">pdf</a></option>
+                            <form action="<%=request.getContextPath() %>/ExportController">
+                                <div class="row">
+                                    
+                                  
+                                    <div class="col-md-6">
+                                        <select  class="form-control" id="exampleFormControlSelect1" name="format">
+                               
+                                <option value="excel">excel</a></option>
+                            <option value="pdf">pdf</a></option>
                             </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" value="Exporter" class="btn btn-primary mb-2">
+                                    </div>
+                                </div>
+                                
+                                
+                            </form>
+                            
                                
                                 
                             
@@ -255,7 +269,7 @@
                             <table class="table">
                          <thead>
                              <tr>
-                                 <th>reference</th>
+                                 <th>Reference</th>
                                  <th>Description</th>
                                  <th>Stock</th>
                              </tr>
@@ -291,9 +305,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
-            </footer>
+            
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

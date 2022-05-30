@@ -242,21 +242,24 @@
         %>
                      <table class="table">
                          <tr>
-                             <th>addition</th>
+                             <th>Addition</th>
                              <th>Reste à payer</th>
-                             <th>date</th>
+                             <th>Date</th>
                          </tr>
                          <% for(int i=0;i<liste.size();i++){ %>
-                         <tr>
+                         <!--<form action="paiement-addition.jsp">-->
                          <form action="paiement-addition.jsp">
+                         <tr>
+                         
                              <td><input type="text" name="idAddition" value="<% out.print(liste.get(i).getId()); %>"></td>
                              <td><input type="text" name="montant" value="<% out.print(liste.get(i).getIdTable()); %>"></td>
                              <td><input type="text" name="date" value="<% out.print(liste.get(i).getDate()); %>"></td>
                              <td><a href="detail-non-paye1.jsp?idAddition=<% out.print(liste.get(i).getId()); %>">voir details</a></td>
                              <td><input type="submit" value="payer" class="btn btn-primary mb-2"></td>
                          </tr>
+                                                  </form>
                          <% } %>
-                         </form>
+
                              
                      </table>
                          

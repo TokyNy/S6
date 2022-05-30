@@ -1,20 +1,9 @@
-<%-- 
-    Document   : paiement-addition
-    Created on : 24 mai 2022, 09:26:56
-    Author     : admin
---%>
-
-<%@page import="model.Addition"%>
 <%@page import="java.util.List"%>
-<%@page import="model.Paiement"%>
-<%@page import="model.TypePaiement"%>
+<%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    String idAddition=request.getParameter("idAddition");
-    String montant=request.getParameter("montant");
-    TypePaiement t=new TypePaiement();
-    TypePaiement[] tp=t.lister();
-    %>
+<%@page import="model.*"%>
+    
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -34,14 +23,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <!-- Custom CSS -->
    <link href="css/style.min.css" rel="stylesheet">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML
-    5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    
 <![endif]-->
 </head>
 
@@ -73,13 +59,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                          <!--  <img src="plugins/images/logo-icon.png" alt="homepage" />
+                           <!-- <img src="plugins/images/logo-icon.png" alt="homepage" />-->
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                        <!--    <img src="plugins/images/logo-text.png" alt="homepage" />
+                            <img src="plugins/images/logo-text.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -113,7 +99,10 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                       
+                        <li>
+                            <a class="profile-pic" href="#">
+                                
+                        </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -225,9 +214,20 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Paiement addition</h4>
+                        <h4 class="page-title">Ajout stock</h4>
                     </div>
-                   
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="#" class="fw-normal"></a></li>
+                            </ol>
+                            <a href="addition-par-table1.jsp" target="_blank"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">voir addition par table
+                                </a>
+                            
+                            
+                        </div>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -244,47 +244,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                          <h2 class="main-heading">Paiement addition</h2>
-                          <h4>Montant à payer: <% out.print(montant); %></h4>
-                          <form action="traitement-paiement-addition.jsp" method="get">
-                              <div class="row">
-                                  <div class="col-md-4">
-                                      <select name="typePaiement"  class="form-control" id="exampleFormControlSelect1">
-                                  <% for (int i=0;i<tp.length;i++){ %>
-                                  <option value="<% out.print(tp[i].getTypePaie()); %>"><% out.print(tp[i].getIntitule()); %></option>
-                                  <% } %>
-                              </select>
-                                  </div>
-                              <div class="col-md-4">
-                                  <input type="text" name="idAddition" value="<% out.print(idAddition); %>" style="display:none">
-                              Montant à payer :<input type="text" name="montant" class="form-control">
-                              </div>
-                              <div class="col-md-4">
-                                  <input type="submit" value="Payer" class="btn btn-primary my-1">
-                              </div>
-                              </div>
-                              
-                              
-                              
-                          </form>
-                              <table class="table">
-                                  <tr>
-                                     
-                                      <th>Type</th>
-                                      <th>Montant</th>
-                                      <th>Date</th>
-                                  </tr>
-                                  <% List<Paiement> p=Addition.getListePaiement(idAddition);
-                                    for( int i=0;i<p.size();i++){
-                                  %>
-                                  <tr>
-                                      <td><% out.print(p.get(i).getIdTypePaiement()); %></td>
-                                      <td><% out.print(p.get(i).getMontant()); %></td>
-                                      <td><% out.print(p.get(i).getDate()); %></td>
-                                  </tr>
-                                  <% } %>
-                              </table>
-                    
+                            <form action="traitement-ajout-stock.jsp" method="get">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                      Ingredient:  <select name="idIngredient" class="form-control" id="exampleFormControlSelect1">
+                                            <% List<Ingredients> liste=Ingredients.getAll();
+                                            for(int i=0;i<liste.size();i++){
+                                            %>
+                                            <option value="<% out.print(liste.get(i).getId()); %>"><% out.print(liste.get(i).getDesc()); %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                        <div class="col-md-4">
+                                            Quantité:  <input type="text" name="quantite"></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="submit" value="Valider"></input>
+                                        </div>
+                                </div>             
+                    </form>
+                                 
+    
 
                             
                         </div>
@@ -307,7 +287,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-           
+            
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

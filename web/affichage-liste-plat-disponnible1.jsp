@@ -274,13 +274,13 @@
                                <table class="table" width="800">
             <thead class="thead-light">
                 <tr>
-                    <th>serveur</th>
-                    <th>plat</th>
-                    <th>prix</th>
+                    <th>Serveur</th>
+                    <th>Plat</th>
+                    <th>Prix</th>
                 
                 
                 
-                <th>quantite</th>
+                <th>Quantite</th>
             </tr>
 
             </thead>

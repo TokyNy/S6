@@ -165,7 +165,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Liste des commandes livré</span>
+                                <span class="hide-menu">Liste des commandes livrï¿½</span>
                             </a>
                         </li>
                         <li class="sidebar-item pt-2">
@@ -238,11 +238,11 @@
                                   <form action="affichage-paiement1.jsp">
                                       <div class="row">
                                           <div class="col-md-4">
-                                                <p class="main-heading"> date 1 :<input type="datetime-local" name="date1" class="form-control"  > </p>
+                                                <p class="main-heading"> Date 1 :<input type="datetime-local" name="date1" class="form-control"  > </p>
 
                                           </div>
                                           <div class="col-md-4">
-                                                                      <p class="main-heading"> date 2 :<input type="datetime-local" name="date2" class="form-control"></p> 
+                                                                      <p class="main-heading"> Date 2 :<input type="datetime-local" name="date2" class="form-control"></p> 
 
                                           </div>
                                           <div class="col-md-4">
@@ -258,8 +258,8 @@
                     <table class="table">
                          <thead>
                              <tr>
-                                 <th>type</th>
-                                 <th>montant</th>
+                                 <th>Type</th>
+                                 <th>Montant</th>
                                  
                              </tr>
                          </thead>
@@ -293,7 +293,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+            <footer class="footer text-center"> 2021 ï¿½ Ample Admin brought to you by <a
                     href="https://www.wrappixel.com/">wrappixel.com</a>
             </footer>
             <!-- ============================================================== -->

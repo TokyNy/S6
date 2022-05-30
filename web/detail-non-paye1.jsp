@@ -239,8 +239,8 @@
         %>
                      <table class="table">
                          <tr>
-                             <th>plat</th>
-                             <th>prix</th>
+                             <th>Plat</th>
+                             <th>Prix</th>
                              
                          </tr>
                          <% for(int i=0;i<liste.size();i++){ %>

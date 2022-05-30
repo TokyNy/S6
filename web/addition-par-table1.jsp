@@ -248,27 +248,30 @@
                      <table class="table">
                          <thead>
                              <tr>
-                                 <th>reference</th>
-                                 <th>table</th>
-                                 <th>date</th>
+                                 <th>Reference</th>
+                                 <th>Table</th>
+                                 <th>Date</th>
                                  <th>Prix total</th>
                              </tr>
                          </thead>
                          <tbody>
                              <% for(int i=0;i<addition.size();i++){ %>
+                             <form action="paiement-addition.jsp" method="get">
                              <tr>
-                         <form action="paiement-addition.jsp" method="get">
+                         
                                  <td><input type="text" name="idAddition" value="<% out.print(addition.get(i).getIdAddition()); %>"></td>
                                  <td><% out.print(addition.get(i).getIdTable()); %></td>
                                  <td><% out.print(addition.get(i).getDate()); %></td>
-                                 <td><% out.print(addition.get(i).getPrixTotal()); %></td>
+                                 <td><input type="text" name="montant" value="<% out.print(addition.get(i).getPrixTotal()); %>"></td>
                                  <td><a href="liste-commande-livre.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir plat livré</a></td>
-                         </form><td><input type="submit" value="payer" class="btn btn-primary my-1"></td>
+                                 <td><input type="submit" value="payer" class="btn btn-primary my-1"></td>
+                         
                              </tr>
+                             </form>
                              <% } %>
                          </tbody>
                      </table>
-                         <p><a href="choix.jsp">retour</a></p>
+                         
                                          
                         </div>
                     </div>
@@ -290,9 +293,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
-            </footer>
+            
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

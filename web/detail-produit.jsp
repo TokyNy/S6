@@ -252,7 +252,7 @@
 
       </h2>
       <p class="text-center" style:color="blue">
-          prix de revient : <% out.print(plat.getPrixDeRevient(con)); %> Ar
+          Prix de revient : <% out.print(plat.getPrixDeRevient(con)); %> Ar
 
       </p>
        <p class="text-center">
@@ -269,10 +269,10 @@
               <thead>
                   <tr>
                       <th>N°</th>
-                      <th>ingredients</th>
-                      <th>prix moyen/kg</th>
-                       <th>quantite</th>
-                       <th>prix</th>
+                      <th>Ingredients</th>
+                      <th>Prix moyen/kg</th>
+                       <th>Quantite</th>
+                       <th>Prix</th>
                       
                        
                   </tr>

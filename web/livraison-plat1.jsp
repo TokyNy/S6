@@ -165,7 +165,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Liste des commandes livré</span>
+                                <span class="hide-menu">Liste des commandes livrï¿½</span>
                             </a>
                         </li>
                         <li class="sidebar-item pt-2">
@@ -242,9 +242,9 @@
         %>
                      <table class="table">
                          <tr>
-                             <th>addition n°</th>
-                             <th>plat</th>
-                             <th>table n°</th>
+                             <th>Addition nï¿½</th>
+                             <th>Plat</th>
+                             <th>Table nï¿½</th>
                          </tr>
                          <% for(int i=0;i<liste.size();i++){ %>
                          <tr>
@@ -278,9 +278,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
-            </footer>
+            
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

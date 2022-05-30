@@ -253,7 +253,7 @@
                           Addition a=new Addition();
                           Vector<AdditionDetails> listeAddition=a.getListeDetail(idAddition);
                      %>
-                     <p><input type="text" name="idAddition" value="<% out.print(idAddition); %>"></p>
+                     <p><input type="text" name="idAddition" value="<% out.print(idAddition); %>" style="display:none"></p>
                      <table class="table">
                          <thead>
                              <tr>
@@ -273,7 +273,7 @@
                              <% } %>
                          </tbody>
                      </table>
-                         <p><input type="submit" value="validerValiderValiderValiderValider" class="btn btn-primary mb-2"></p>
+                         <p><input type="submit" value="Valider" class="btn btn-primary mb-2"></p>
                     </form>
                                 
                                 
