@@ -1,8 +1,20 @@
-<%@page import="java.util.Vector"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
-    
+<%-- 
+    Document   : paiement-addition
+    Created on : 24 mai 2022, 09:26:56
+    Author     : admin
+--%>
 
+<%@page import="model.Addition"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Paiement"%>
+<%@page import="model.TypePaiement"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String idAddition=request.getParameter("idAddition");
+    //String montant=request.getParameter("montant");
+    TypePaiement t=new TypePaiement();
+    TypePaiement[] tp=t.lister();
+    %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -61,13 +73,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+                          <!--  <img src="plugins/images/logo-icon.png" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
+                        <!--    <img src="plugins/images/logo-text.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -195,7 +207,8 @@
                         
                     </ul>
 
-                </nav><!-- End Sidebar navigation -->
+                </nav>
+                <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -212,14 +225,9 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Additions par table</h4>
+                        <h4 class="page-title">Paiement addition</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-md-flex">
-                            
-                           
-                        </div>
-                    </div>
+                   
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -236,40 +244,37 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                          <h2 class="main-heading">
-        Addition par table
+                          <h2 class="main-heading">Paiement addition</h2>
+                          <form action="traitement-paiement-addition.jsp" method="get">
+                              <select name="typePaiement"  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                  <% for (int i=0;i<tp.length;i++){ %>
+                                  <option value="<% out.print(tp[i].getTypePaie()); %>"><% out.print(tp[i].getIntitule()); %></option>
+                                  <% } %>
+                              </select>
+                              <input type="text" name="idAddition" value="<% out.print(idAddition); %>" style="display:none">
+                              montant à payer :<input type="text" name="montant" class="form-control">
+                              <input type="submit" value="payer" class="btn btn-primary my-1">>
+                          </form>
+                              <table class="table">
+                                  <tr>
+                                      <th>addition</th>
+                                      <th>type</th>
+                                      <th>montant</th>
+                                      <th>date</th>
+                                  </tr>
+                                  <% List<Paiement> p=Addition.getListePaiement(idAddition);
+                                    for( int i=0;i<p.size();i++){
+                                  %>
+                                  <tr>
+                                      <td><% out.print(p.get(i).getIdTypePaiement()); %></td>
+                                      <td><% out.print(p.get(i).getMontant()); %></td>
+                                      <td><% out.print(p.get(i).getDate()); %></td>
+                                  </tr>
+                                  <% } %>
+                              </table>
+                    
 
-      </h2>
-        <% 
-                         Vector<AdditionTable> addition=AdditionTable.getAll();
-                         
-                          
-                     %>
-                     <table class="table">
-                         <thead>
-                             <tr>
-                                 <th>reference</th>
-                                 <th>table</th>
-                                 <th>date</th>
-                                 <th>Prix total</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <% for(int i=0;i<addition.size();i++){ %>
-                             <tr>
-                         <form action="paiement-addition.jsp" method="get">
-                                 <td><input type="text" name="idAddition" value="<% out.print(addition.get(i).getIdAddition()); %>"></td>
-                                 <td><% out.print(addition.get(i).getIdTable()); %></td>
-                                 <td><% out.print(addition.get(i).getDate()); %></td>
-                                 <td><% out.print(addition.get(i).getPrixTotal()); %></td>
-                                 <td><a href="liste-commande-livre.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir plat livré</a></td>
-                         </form><td><input type="submit" value="payer" class="btn btn-primary my-1"></td>
-                             </tr>
-                             <% } %>
-                         </tbody>
-                     </table>
-                         <p><a href="choix.jsp">retour</a></p>
-                                         
+                            
                         </div>
                     </div>
                 </div>
@@ -290,9 +295,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
-            </footer>
+           
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

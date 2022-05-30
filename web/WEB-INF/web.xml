@@ -12,10 +12,6 @@
         <servlet-name>ListePlatParCategorieServlet</servlet-name>
         <servlet-class>controller.ListePlatParCategorieServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ExportController</servlet-name>
-        <servlet-class>controller.ExportController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ListePlatServlet</servlet-name>
         <url-pattern>/ListePlat</url-pattern>
@@ -27,10 +23,6 @@
     <servlet-mapping>
         <servlet-name>ListePlatParCategorieServlet</servlet-name>
         <url-pattern>/ListePlatParCategorie</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExportController</servlet-name>
-        <url-pattern>/ExportController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

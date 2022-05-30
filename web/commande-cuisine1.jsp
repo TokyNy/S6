@@ -97,22 +97,11 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li>
-                            <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -137,56 +126,73 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="choix1.jsp"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">choix table</span>
+                                <span class="hide-menu">Choix table</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-non-paye1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">liste des additions non payes</span>
+                                <span class="hide-menu">Liste des additions non payes</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="commande-cuisine1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">liste des commandes en cuisine</span>
+                                <span class="hide-menu">Liste des commandes en cuisine</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-par-table1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu">liste des additions par table</span>
+                                <span class="hide-menu">Liste des additions par table</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="affichage-paiement1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">paiement</span>
+                                <span class="hide-menu">Paiement</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="ingredients-consomme1.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">quantite ingredient</span>
+                                <span class="hide-menu">Quantite ingredient</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">liste des commandes livré</span>
+                                <span class="hide-menu">Liste des commandes livré</span>
                             </a>
                         </li>
-                        <li class="text-center p-20 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/"
-                                class="btn d-grid btn-danger text-white" target="_blank">
-                                Upgrade to Pro</a>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="stock1.jsp"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Stock</span>
+                            </a>
                         </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pour-boir1.jsp"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Pourboire</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="addition-non-paye1.jsp"
+                                aria-expanded="false">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span class="hide-menu">Additions</span>
+                            </a>
+                        </li>
+                        
                     </ul>
 
                 </nav>
@@ -210,14 +216,7 @@
                         <h4 class="page-title">Commande en cuisine</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-md-flex">
-                            <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal">Dashboard</a></li>
-                            </ol>
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
-                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
-                                to Pro</a>
-                        </div>
+                        
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -254,6 +253,11 @@
                          </tr>
                          <% } %>
                      </table>
+                     <div class="row">
+                         <div class="col-md-4"></div>
+                         <div class="col-md-4"><p><a href="addition-par-table1.jsp">livraison</a></p></div>
+                         <div class="col-md-4"></div>
+                     </div>
                      
                      <div></div>
                          

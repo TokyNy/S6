@@ -79,7 +79,7 @@
                              <td><% out.print(liste.get(i).getId()); %></td>
                              <td><% out.print(liste.get(i).getIdTable()); %></td>
                              <td><% out.print(liste.get(i).getDate()); %></td>
-                             <td><a href="detail-non-paye.jsp?idAddition=<% out.print(liste.get(i).getId()); %>">voir details</a></td>
+                             <td><a href="detail-non-paye1.jsp?idAddition=<% out.print(liste.get(i).getId()); %>">voir details</a></td>
                          </tr>
                          <% } %>
                      </table>

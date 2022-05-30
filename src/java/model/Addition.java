@@ -9,10 +9,10 @@ import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -195,7 +195,7 @@ public class Addition {
         con.close();
         return retour;
     }
-    
+
     public static PaiementDetail getPaiementDetail(String idAddition)throws Exception{
         String req="SELECT * FROM vue_addition_non_payer WHERE id='"+idAddition+"'";
         Connection con=Connexion.getConnection();

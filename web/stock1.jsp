@@ -1,7 +1,12 @@
+<%@page import="java.util.Date"%>
+<%@page import="model.Ingredients"%>
 <%@page import="java.util.Vector"%>
+<%@page import="model.Stock"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
-    
+<%
+    Date d=new Date();
+    Vector<Ingredients> liste=Stock.getStockIngredient();
+%>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -22,14 +27,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <!-- Custom CSS -->
    <link href="css/style.min.css" rel="stylesheet">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML
-    5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    
 <![endif]-->
 </head>
 
@@ -61,13 +63,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+                           <!-- <img src="plugins/images/logo-icon.png" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
+                        <!--    <img src="plugins/images/logo-text.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -97,11 +99,13 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                       
+                        <li class=" in">
+                                                    </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                       
+                        
+                           
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -119,7 +123,7 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
+              <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
@@ -195,7 +199,8 @@
                         
                     </ul>
 
-                </nav><!-- End Sidebar navigation -->
+                </nav>
+                <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -212,12 +217,22 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Additions par table</h4>
+                        <h4 class="page-title">Stock des ingredients</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="#" class="fw-normal"></a></li>
+                            </ol>
+                            <select  class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" value="exporter">
+                                <option>exporter</option>
+                                <option><a href="#">excel</a></option>
+                            <option><a href="#">pdf</a></option>
+                            </select>
+                               
+                                
                             
-                           
+                            
                         </div>
                     </div>
                 </div>
@@ -236,40 +251,26 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                          <h2 class="main-heading">
-        Addition par table
-
-      </h2>
-        <% 
-                         Vector<AdditionTable> addition=AdditionTable.getAll();
-                         
-                          
-                     %>
-                     <table class="table">
+                            <h3 class="box-title">Stock des ingredients</h3>
+                            <table class="table">
                          <thead>
                              <tr>
                                  <th>reference</th>
-                                 <th>table</th>
-                                 <th>date</th>
-                                 <th>Prix total</th>
+                                 <th>Description</th>
+                                 <th>Stock</th>
                              </tr>
                          </thead>
                          <tbody>
-                             <% for(int i=0;i<addition.size();i++){ %>
+                             <% for(int i=0;i<liste.size();i++){ %>
                              <tr>
-                         <form action="paiement-addition.jsp" method="get">
-                                 <td><input type="text" name="idAddition" value="<% out.print(addition.get(i).getIdAddition()); %>"></td>
-                                 <td><% out.print(addition.get(i).getIdTable()); %></td>
-                                 <td><% out.print(addition.get(i).getDate()); %></td>
-                                 <td><% out.print(addition.get(i).getPrixTotal()); %></td>
-                                 <td><a href="liste-commande-livre.jsp?idAddition=<% out.print(addition.get(i).getIdAddition()); %>">voir plat livré</a></td>
-                         </form><td><input type="submit" value="payer" class="btn btn-primary my-1"></td>
+                                  <td><% out.print(liste.get(i).getId()); %></td>
+                                    <td><% out.print(liste.get(i).getDesc()); %></td>
+                                    <td><% out.print(liste.get(i).getPoids()); %></td>
                              </tr>
                              <% } %>
                          </tbody>
                      </table>
-                         <p><a href="choix.jsp">retour</a></p>
-                                         
+                     </div>
                         </div>
                     </div>
                 </div>

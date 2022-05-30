@@ -11,7 +11,7 @@
     String idPlat=request.getParameter("idPlat");
     try{
         Addition.annuler(idAddition, idPlat);
-        response.sendRedirect("listeDetailsCommande.jsp?idAddition="+idAddition);
+        response.sendRedirect("liste-details-commande.jsp?idAddition="+idAddition);
     }catch(Exception e){
         out.println("ERREUR: "+e.getMessage());
     }

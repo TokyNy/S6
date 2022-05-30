@@ -311,35 +311,25 @@ insert into typePaiement values (default,'mobile money');
 
 create table Paiement (
         id varchar(10) not null default concat('Paie',nextval('seqPaie')),
-        idAddition varchar(10) not null,        
+        idAdditionDetails varchar(10) not null,        
         idTypePaiement varchar(10) not null,
         montant float not null,
         date timestamp,
         PRIMARY KEY(id),
-        FOREIGN KEY(idAddition) REFERENCES Addition(id),
+        FOREIGN KEY(idAdditionDetails) REFERENCES AdditionDetails(id),
         FOREIGN KEY(idTypePaiement) REFERENCES TypePaiement(id)
 );
-insert into paiement values (default,'Add10','TypePaie1',5000,'2022-04-01 01:00');
-insert into paiement values (default,'Add11','TypePaie2',8000,'2022-04-01 01:00');
-insert into paiement values (default,'Add10','TypePaie1',5000,now());
-insert into paiement values (default,'Add11','TypePaie2',5000,now());
-insert into paiement values (default,'Add12','TypePaie2',5000,now());
-insert into paiement values (default,'Add12','TypePaie2',3000,now());
+insert into paiement values (default,'AddDet21','TypePaie1',5000,'2022-04-01 01:00');
+insert into paiement values (default,'AddDet22','TypePaie2',8000,'2022-04-01 01:00');
+insert into paiement values (default,'AddDet27','TypePaie1',5000,now());
+insert into paiement values (default,'AddDet28','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',5000,now());
+insert into paiement values (default,'AddDet12','TypePaie2',3000,now());
 
 
 ----view addition  non payer
 create view vue_addition_non_payer as 
-select addition.*,SUM(ad.prix) as prix,sum(paiement.montant) as montantPayer from addition left join additiondetails as ad on addition.id=ad.idAddition 
-left join paiement on addition.id=paiement.idaddition group by addition.id;
-
-
-select addition.*,
-CASE WHEN SUM(ad.prix) is null THEN 0 ELSE SUM(ad.prix) END prix,
-CASE WHEN SUM(paiement.montant) is null then 0 else sum(paiement.montant) end montantPayer,
-(SUM(ad.prix)-sum(paiement.montant)) as reste 
-from addition 
-left join additiondetails as ad on addition.id=ad.idAddition 
-left join paiement on addition.id=paiement.idaddition group by addition.id;
-
-
+select addition.*,SUM(ad.prix) as prix from addition join additiondetails as ad on addition.id=ad.idAddition 
+where ad.id not in (SELECT idAdditiondetails from paiement)
+group by addition.id;
 
