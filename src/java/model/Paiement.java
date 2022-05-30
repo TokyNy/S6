@@ -69,7 +69,7 @@ public class Paiement {
         //String sql="SELECT p.idTypePaiement,tp.intitule as nomType,SUM(montant) as montant FROM Paiement p right join TypePaiement tp on p.idTypePaiement=tp.id WHERE";
         String sql="SELECT tp.id as idTypePaiement,tp.intitule as nomType,CASE WHEN SUM(montant) IS NULL THEN 0 ELSE SUM(montant) END montant FROM TypePaiement tp left join Paiement p on p.idTypePaiement=tp.id WHERE ";
         if(date1==null || date1.isEmpty()==true){
-            if(date2==null && date2.isEmpty()==true){
+            if(date2==null || date2.isEmpty()==true){
                 sql+=" date::TIMESTAMP::DATE>=CURRENT_DATE AND";
             }
         }else{
@@ -93,4 +93,24 @@ public class Paiement {
         con.close();
         return retour;
     }
+    
+     public Paiement() {
+    }
+
+    public Paiement(String id, String idAdditionDetail, String idTypePaiement, double montant, Date date) {
+        this.id = id;
+        this.idAdditionDetail = idAdditionDetail;
+        this.idTypePaiement = idTypePaiement;
+        this.montant = montant;
+        this.date = date;
+    }
+    
+       public static void payer(String idAdditionDetail,String idType,String montant)throws Exception{
+        String req="INSERT INTO Paiement VALUES(default,'"+idAdditionDetail+"','"+idType+"',"+montant+",NOW())";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        stmt.executeUpdate(req);
+        con.close();
+    }
+    
 }

@@ -9,7 +9,9 @@ import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -187,6 +189,41 @@ public class Addition {
         Vector<AdditionDetails> retour=new Vector();
         while(res.next()){
             retour.add(new AdditionDetails(res.getString("id"),res.getString("idAddition"),res.getString("idPlat"),res.getDouble("prix")));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
+    
+        public static PaiementDetails getPaiementDetail(String idAddition)throws Exception{
+        String req="SELECT * FROM vue_addition_non_payer WHERE id='"+idAddition+"'";
+        Connection con=Connexion.getConnection();
+        PaiementDetails retour=new PaiementDetails();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.setId(res.getString("id"));
+            retour.setIdTable(res.getString("idTable"));
+            retour.setPrix(res.getDouble("prix"));
+            retour.setMontantPayer(res.getDouble("montantPayer"));
+            retour.setDate(res.getDate("date"));
+            retour.setReste(res.getDouble("prix")-res.getDouble("montantPayer"));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
+    }
+    
+    public static List<Paiement> getListePaiement(String idAddition)throws Exception{
+        List<Paiement> retour=new ArrayList();
+        String req="SELECT p.*,tp.intitule FROM Paiement p join TypePaiement tp on tp.id=p.idTypePaiement WHERE p.idAddition='"+idAddition+"'";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.add(new Paiement(res.getString("id"),res.getString("idAddition"),res.getString("intitule"),res.getDouble("montant"),res.getDate("date")));
         }
         res.close();
         stmt.close();
