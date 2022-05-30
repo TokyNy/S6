@@ -164,7 +164,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="liste-commande-livre.jsp"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Liste des commandes livré</span>
+                                <span class="hide-menu">Liste des commandes livrï¿½</span>
                             </a>
                         </li>
                         <li class="sidebar-item pt-2">

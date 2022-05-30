@@ -270,9 +270,9 @@
                               <table class="table">
                                   <tr>
                                      
-                                      <th>type</th>
-                                      <th>montant</th>
-                                      <th>date</th>
+                                      <th>Type</th>
+                                      <th>Montant</th>
+                                      <th>Date</th>
                                   </tr>
                                   <% List<Paiement> p=Addition.getListePaiement(idAddition);
                                     for( int i=0;i<p.size();i++){
