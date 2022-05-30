@@ -9,6 +9,8 @@ import connexion.Connexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -133,5 +135,20 @@ public class Ingredients {
             prix+=liste.get(i).getPrixTotal();
         }
         return prix;
+    }
+    
+    public static List<Ingredients> getAll()throws Exception{
+        List<Ingredients> retour=new ArrayList();
+        String req="SELECT * FROM Ingredient";
+        Connection con=Connexion.getConnection();
+        Statement stmt=con.createStatement();
+        ResultSet res=stmt.executeQuery(req);
+        while(res.next()){
+            retour.add(new Ingredients(res.getString("id"),res.getString("descri"),0.0));
+        }
+        res.close();
+        stmt.close();
+        con.close();
+        return retour;
     }
 }

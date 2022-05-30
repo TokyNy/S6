@@ -115,7 +115,6 @@ public class Export {
         PdfTrueTypeFont font2 = new PdfTrueTypeFont(new Font("Arial", 0,9));
         //page.getCanvas().drawString(String.format("* %1$s countries in the list.", data.length - 1), font2, brush2, 5, y);
 
-        //Save the file
         doc.saveToFile("Etat-stock-ingredients.pdf");
     }
 }
